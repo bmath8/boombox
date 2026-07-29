@@ -1,0 +1,717 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-void: #000000;
+  --color-carbon: #0a0a0a;
+  --color-steel: #1a1a1a;
+  --color-chrome: #2a2a2a;
+  --color-electric-amber: #ffaa00;
+  --color-electric-glow: #ffbb33;
+  --color-electric-core: #ffcc44;
+  --color-signal-green: #00ff88;
+  --color-ice: #f0f0e8;
+  --color-smoke: #666666;
+  --color-dust: #888888;
+  --color-ferrofluid: #1a1a1a;
+  --color-ferrofluid-shine: #3a3a3a;
+  --color-ferrofluid-peak: #4a4a4a;
+
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-dm-mono), monospace;
+  --font-display: var(--font-bebas-neue), sans-serif;
+  --font-impact: var(--font-archivo-black), sans-serif;
+  --font-righteous: var(--font-righteous), cursive;
+  --font-jetbrains: var(--font-jetbrains-mono), monospace;
+  --font-orbitron: var(--font-orbitron), sans-serif;
+  --font-share: var(--font-share-tech-mono), monospace;
+  --font-rajdhani: var(--font-rajdhani), sans-serif;
+
+  --animate-grid-pulse: gridPulse 4s ease-in-out infinite;
+  --animate-electric-flow: electricFlow 3s ease-in-out infinite;
+  --animate-field-pulse: fieldPulse 2s ease-in-out infinite;
+  --animate-cone-breathe: coneBreathe 2s ease-in-out infinite;
+  --animate-eq-dance: eqDance 0.8s ease-in-out infinite;
+  --animate-reel-spin: reelSpin 3s linear infinite;
+  --animate-tape-flow: tapeFlow 2s linear infinite;
+  --animate-live-blink: liveBlink 2s ease-in-out infinite;
+  --animate-track-fade-in: trackFadeIn 0.8s ease;
+  --animate-album-shine: albumShine 6s ease-in-out infinite;
+  --animate-spike-oscillate: spikeOscillate 2s ease-in-out infinite;
+  --animate-droplet-float: dropletFloat 3s ease-in-out infinite;
+  --animate-field-flow: fieldFlow 4s linear infinite;
+
+  @keyframes gridPulse {
+
+    0%,
+    100% {
+      opacity: 0.03;
+    }
+
+    50% {
+      opacity: 0.06;
+    }
+  }
+
+  @keyframes electricFlow {
+    0% {
+      transform: translateX(0);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(200%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fieldPulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 0.6;
+    }
+
+    100% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes coneBreathe {
+
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 30px rgba(255, 170, 0, 0.6);
+    }
+
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 50px rgba(255, 170, 0, 0.9);
+    }
+  }
+
+  @keyframes eqDance {
+
+    0%,
+    100% {
+      transform: scaleY(1);
+      opacity: 0.8;
+    }
+
+    50% {
+      transform: scaleY(0.3);
+      opacity: 1;
+    }
+  }
+
+  @keyframes reelSpin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes tapeFlow {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: 100px 0;
+    }
+  }
+
+  @keyframes liveBlink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes trackFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes albumShine {
+
+    0%,
+    100% {
+      left: -100%;
+    }
+
+    50% {
+      left: 100%;
+    }
+  }
+
+  @keyframes spikeOscillate {
+
+    0%,
+    100% {
+      transform: scaleY(1) scaleX(1);
+      filter: brightness(1);
+    }
+
+    25% {
+      transform: scaleY(0.7) scaleX(1.2);
+      filter: brightness(1.1);
+    }
+
+    50% {
+      transform: scaleY(1.3) scaleX(0.8);
+      filter: brightness(0.9);
+    }
+
+    75% {
+      transform: scaleY(0.9) scaleX(1.1);
+      filter: brightness(1.05);
+    }
+  }
+
+  @keyframes dropletFloat {
+    0% {
+      bottom: 50%;
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    50% {
+      bottom: 80%;
+      opacity: 0.8;
+      transform: scale(1);
+    }
+
+    100% {
+      bottom: 100%;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+
+  @keyframes fieldFlow {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Visualizer bar bounce animation */
+  @keyframes barBounce {
+    0% {
+      height: var(--bar-min, 20%);
+    }
+
+    100% {
+      height: var(--bar-max, 80%);
+    }
+  }
+}
+
+/* Visualizer bar class - must be outside @theme for proper scoping */
+.visualizer-bar {
+  animation: barBounce ease-in-out infinite alternate;
+  height: var(--bar-min, 20%);
+}
+
+/* Speaker pulse animations */
+@keyframes speakerPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes speakerConePulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.speaker-pulse {
+  animation: speakerPulse 0.5s ease-in-out infinite;
+}
+
+.speaker-cone-pulse {
+  animation: speakerConePulse 0.5s ease-in-out infinite;
+}
+
+/* Mobile Player Animations */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.4), 0 0 40px rgba(255, 107, 0, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(255, 107, 0, 0.6), 0 0 80px rgba(255, 107, 0, 0.3);
+  }
+}
+
+@keyframes vinylSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes waveformPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+}
+
+.glow-ring {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.vinyl-spin {
+  animation: vinylSpin 4s linear infinite;
+}
+
+.vinyl-spin-paused {
+  animation-play-state: paused;
+}
+
+.waveform-pulse {
+  animation: waveformPulse 3s ease-in-out infinite;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  background: rgba(20, 20, 25, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+:root {
+  /* BoomBox Palette */
+  --orange: #ff6b00;
+  --orange-glow: rgba(255, 107, 0, 0.5);
+  --chrome: #c0c0c8;
+  --chrome-mid: #909098;
+  --chrome-dark: #606068;
+  --bg-void: #050507;
+  --panel-dark: #0c0c0f;
+  --panel-mid: #141418;
+  --border-boombox: #1e1e24;
+  --background: #000000;
+  /* Void */
+  --foreground: #f0f0e8;
+  /* Ice */
+
+  --primary: #ffaa00;
+  /* Electric Amber */
+  --primary-foreground: #000000;
+
+  --secondary: #00ff88;
+  /* Signal Green */
+  --secondary-foreground: #000000;
+
+  --muted: #1a1a1a;
+  /* Steel */
+  --muted-foreground: #888888;
+  /* Dust */
+
+  --accent: #ffbb33;
+  /* Electric Glow */
+  --accent-foreground: #000000;
+
+  --destructive: #ff3838;
+  --destructive-foreground: #f0f0e8;
+
+  --border: #2a2a2a;
+  /* Chrome */
+  --input: #0a0a0a;
+  /* Carbon */
+  --ring: #ffaa00;
+
+  --radius: 0px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Vinyl grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Stage lighting background */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(230, 57, 70, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(247, 127, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(6, 255, 165, 0.05) 0%, transparent 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-left: 2px solid var(--border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: var(--background);
+}
+
+/* Typography Utilities */
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.font-heading {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+/* Oversized Typography */
+.text-massive {
+  font-size: clamp(3rem, 12vw, 10rem);
+  line-height: 0.9;
+  font-weight: 800;
+}
+
+/* Asymmetric Container */
+.container-asymmetric {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 4rem);
+}
+
+/* Stagger Animation */
+.stagger-item {
+  animation: slide-diagonal 0.6s ease-out backwards;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+/* ========================================
+   UTILITIES & ACCESSIBILITY
+   ======================================== */
+
+/* Glass morphism effect */
+.glass-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Safe area insets for mobile devices */
+.safe-area-inset-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-inset-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-inset-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* iOS-specific safe area utilities */
+.ios-safe-top {
+  padding-top: max(env(safe-area-inset-top), 1rem);
+}
+
+.ios-safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
+/* iOS momentum scrolling */
+.ios-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Disable iOS pull-to-refresh on specific elements */
+.no-pull-refresh {
+  overscroll-behavior-y: contain;
+}
+
+/* iOS text selection and callouts */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* iOS tap highlight color */
+* {
+  -webkit-tap-highlight-color: rgba(255, 107, 0, 0.1);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: rgba(255, 107, 0, 0.15);
+}
+
+/* Screen reader only - visually hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Skip to main content link */
+.skip-to-content {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: var(--background);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease-in-out;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Improved focus styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove default focus for mouse users if strictly needed, 
+   but keeping browser default is often safer. 
+   We'll override only if focus-visible is supported. */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Touch targets for mobile - Apple HIG recommends 44x44pt minimum */
+@media (pointer: coarse) {
+
+  button,
+  a,
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"],
+  [role="button"] {
+    min-width: 44px;
+    min-height: 44px;
+    /* Add padding if the element is smaller */
+    padding: max(0.5rem, calc((44px - 1em) / 2));
+  }
+
+  /* Ensure clickable areas extend to touch target size */
+  button::before,
+  a::before,
+  [role="button"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
+    z-index: -1;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+
+  .glass-dark,
+  .glass-light {
+    background: var(--background);
+    border: 1px solid var(--foreground);
+  }
+
+  *:focus-visible {
+    outline-width: 3px;
+    outline-offset: 3px;
+    outline-style: solid;
+    outline-color: CanvasText;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    /* NOTE: Removed transition-duration override to keep visualizer/speaker
+       animations functional (they use transitions, not CSS animations) */
+    scroll-behavior: auto !important;
+  }
+
+  .animate-spin,
+  .animate-pulse {
+    animation: none !important;
+  }
+}

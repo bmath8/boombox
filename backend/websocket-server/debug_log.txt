@@ -1,0 +1,140 @@
+[2025-12-06T02:00:39.160Z] Server started on 0.0.0.0
+[2025-12-06T02:01:02.732Z] Server started on 0.0.0.0
+[2025-12-06T02:10:09.261Z] Server started on 0.0.0.0
+[2025-12-06T03:52:37.249Z] Server started on 0.0.0.0
+[2025-12-06T03:55:49.112Z] Server started on 0.0.0.0
+[2025-12-06T04:06:15.651Z] Server started on 0.0.0.0
+[2025-12-06T04:11:08.608Z] Server started on 0.0.0.0
+[2025-12-06T19:23:07.777Z] Server started on 0.0.0.0
+[2025-12-06T19:24:46.767Z] Server started on 0.0.0.0
+[2025-12-06T19:24:47.338Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:24:47.339Z] Token received: YES (Length: 859)
+[2025-12-06T19:24:47.340Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:25:31.284Z] Server started on 0.0.0.0
+[2025-12-06T19:25:33.450Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:25:33.451Z] Token received: YES (Length: 859)
+[2025-12-06T19:25:33.452Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:25:49.370Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:25:49.370Z] Token received: YES (Length: 859)
+[2025-12-06T19:25:49.371Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:26:53.115Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:26:53.115Z] Token received: YES (Length: 859)
+[2025-12-06T19:26:53.116Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:27:50.500Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:50.501Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:51.815Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:51.816Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:53.127Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:53.128Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:54.441Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:54.441Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:55.752Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:55.753Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:57.067Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:57.067Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:58.383Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:58.384Z] Token received: YES (Length: 859)
+[2025-12-06T19:27:59.696Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:27:59.697Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:01.167Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:01.168Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:02.486Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:02.487Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:03.804Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:03.805Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:05.121Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:05.122Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:06.437Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:06.438Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:07.759Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:07.760Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:09.078Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:09.079Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:10.398Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:10.398Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:11.713Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:11.713Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:13.028Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:13.029Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:14.345Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:14.345Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:15.660Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:15.661Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:16.976Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:16.976Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:18.293Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:18.295Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:19.609Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:19.610Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:20.924Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:20.924Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:22.235Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:22.236Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:23.552Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:23.552Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:24.867Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:24.867Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:26.180Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:26.181Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:27.494Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:27.494Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:28.806Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:28.807Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:30.121Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:30.121Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:31.436Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:31.437Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:32.751Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:32.752Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:34.066Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:34.067Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:35.383Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:35.384Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:36.700Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:36.700Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:38.017Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:38.018Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:39.327Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:39.328Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:40.637Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:28:40.638Z] Token received: YES (Length: 859)
+[2025-12-06T19:28:40.639Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:29:55.158Z] Server started on 0.0.0.0
+[2025-12-06T19:30:53.108Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:30:53.109Z] Token received: YES (Length: 859)
+[2025-12-06T19:30:53.110Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:33:25.191Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:33:25.192Z] Token received: YES (Length: 859)
+[2025-12-06T19:33:25.193Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:33:42.485Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:33:42.485Z] Token received: YES (Length: 859)
+[2025-12-06T19:33:42.486Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:34:01.367Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:34:01.368Z] Token received: YES (Length: 859)
+[2025-12-06T19:34:01.369Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T19:34:30.746Z] New connection attempt from 127.0.0.1
+[2025-12-06T19:34:30.747Z] Token received: YES (Length: 859)
+[2025-12-06T19:34:30.748Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T20:37:36.167Z] New connection attempt from 127.0.0.1
+[2025-12-06T20:37:36.168Z] Token received: YES (Length: 859)
+[2025-12-06T20:37:36.169Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T20:39:02.087Z] New connection attempt from 127.0.0.1
+[2025-12-06T20:39:02.087Z] Token received: YES (Length: 859)
+[2025-12-06T20:39:02.088Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T20:43:15.226Z] New connection attempt from 127.0.0.1
+[2025-12-06T20:43:15.227Z] Token received: YES (Length: 859)
+[2025-12-06T20:43:15.228Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T20:48:41.658Z] New connection attempt from 127.0.0.1
+[2025-12-06T20:48:41.659Z] Token received: YES (Length: 859)
+[2025-12-06T20:48:41.660Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T21:03:26.912Z] Server started on 0.0.0.0
+[2025-12-06T21:03:27.594Z] Server started on 0.0.0.0
+[2025-12-06T22:41:48.016Z] Server started on 0.0.0.0
+[2025-12-06T22:41:49.070Z] Server started on 0.0.0.0
+[2025-12-06T23:04:40.324Z] New connection attempt from 127.0.0.1
+[2025-12-06T23:04:40.333Z] Token received: YES (Length: 859)
+[2025-12-06T23:04:40.349Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T23:13:17.916Z] New connection attempt from 127.0.0.1
+[2025-12-06T23:13:17.923Z] Token received: YES (Length: 859)
+[2025-12-06T23:13:17.926Z] Auth Success for f4b67c92-b2a5-4f3f-8e64-b7c41729f9dd
+[2025-12-06T23:36:32.505Z] Server started on 0.0.0.0

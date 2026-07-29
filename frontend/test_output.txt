@@ -1,0 +1,184 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL src/lib/__tests__/rate-limit.test.ts
+  RateLimiter
+    ├ù should allow requests within limit (3 ms)
+    ├ù should block requests exceeding limit
+    ├ù should reset limit after interval (1 ms)
+    ├ù should track multiple tokens independently
+
+  ΓùÅ RateLimiter ΓÇ║ should allow requests within limit
+
+    expect(received).resolves.toBeUndefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Rate limit exceeded]
+
+      19 |         const token = 'user-1';
+      20 |         await expect(limiter.check(2, token)).resolves.toBeUndefined();
+    > 21 |         await expect(limiter.check(2, token)).resolves.toBeUndefined();
+         |               ^
+      22 |     });
+      23 |
+      24 |     it('should block requests exceeding limit', async () => {
+
+      at expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2116:15)
+      at Object.expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/rate-limit.test.ts:21:15)
+
+  ΓùÅ RateLimiter ΓÇ║ should block requests exceeding limit
+
+    expect(received).resolves.toBeUndefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Rate limit exceeded]
+
+      24 |     it('should block requests exceeding limit', async () => {
+      25 |         const token = 'user-2';
+    > 26 |         await expect(limiter.check(1, token)).resolves.toBeUndefined();
+         |               ^
+      27 |         await expect(limiter.check(1, token)).rejects.toThrow('Rate limit exceeded');
+      28 |     });
+      29 |
+
+      at expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2116:15)
+      at Object.expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/rate-limit.test.ts:26:15)
+
+  ΓùÅ RateLimiter ΓÇ║ should reset limit after interval
+
+    expect(received).resolves.toBeUndefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Rate limit exceeded]
+
+      30 |     it('should reset limit after interval', async () => {
+      31 |         const token = 'user-3';
+    > 32 |         await expect(limiter.check(1, token)).resolves.toBeUndefined();
+         |               ^
+      33 |         await expect(limiter.check(1, token)).rejects.toThrow('Rate limit exceeded');
+      34 |
+      35 |         // Advance time by 1 second + buffer
+
+      at expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2116:15)
+      at Object.expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/rate-limit.test.ts:32:15)
+
+  ΓùÅ RateLimiter ΓÇ║ should track multiple tokens independently
+
+    expect(received).resolves.toBeUndefined()
+
+    Received promise rejected instead of resolved
+    Rejected to value: [Error: Rate limit exceeded]
+
+      41 |
+      42 |     it('should track multiple tokens independently', async () => {
+    > 43 |         await expect(limiter.check(1, 'user-A')).resolves.toBeUndefined();
+         |               ^
+      44 |         await expect(limiter.check(1, 'user-B')).resolves.toBeUndefined();
+      45 |
+      46 |         await expect(limiter.check(1, 'user-A')).rejects.toThrow('Rate limit exceeded');
+
+      at expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2116:15)
+      at Object.expect (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/rate-limit.test.ts:43:15)
+
+-------------------------------------------|---------|----------|---------|---------|-------------------
+File                                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------------------------------|---------|----------|---------|---------|-------------------
+All files                                  |    0.66 |     0.71 |    0.57 |    0.71 |                   
+ src                                       |       0 |        0 |       0 |       0 |                   
+  middleware.ts                            |       0 |        0 |       0 |       0 | 1-84              
+  test-utils.tsx                           |       0 |      100 |       0 |       0 | 1-51              
+ src/app/api/auth/callback/spotify         |       0 |        0 |       0 |       0 |                   
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-70              
+ src/app/api/health                        |       0 |        0 |       0 |       0 |                   
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-48              
+ src/app/api/spotify/playlists             |       0 |        0 |       0 |       0 |                   
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-44              
+ src/app/api/spotify/playlists/[id]/tracks |       0 |        0 |       0 |       0 |                   
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-36              
+ src/app/api/spotify/search                |       0 |        0 |       0 |       0 |                   
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-61              
+ src/app/auth/auth-code-error              |       0 |        0 |       0 |       0 |                   
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-73              
+ src/app/auth/callback                     |       0 |        0 |       0 |       0 |                   
+  route.ts                                 |       0 |        0 |       0 |       0 | 1-48              
+ src/app/login                             |       0 |      100 |       0 |       0 |                   
+  page.tsx                                 |       0 |      100 |       0 |       0 | 1-3               
+ src/app/playlists                         |       0 |        0 |       0 |       0 |                   
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-190             
+ src/app/playlists/[id]                    |       0 |        0 |       0 |       0 |                   
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-9               
+ src/app/radio                             |       0 |      100 |       0 |       0 |                   
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-5               
+ src/app/radio/[id]                        |       0 |        0 |       0 |       0 |                   
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-10              
+ src/app/test/spotify                      |       0 |        0 |       0 |       0 |                   
+  page.tsx                                 |       0 |        0 |       0 |       0 | 8-114             
+ src/components                            |       0 |        0 |       0 |       0 |                   
+  auth-form.tsx                            |       0 |        0 |       0 |       0 | 3-292             
+  boombox-login.tsx                        |       0 |        0 |       0 |       0 | 3-230             
+  collaborative-playlist-creator.tsx       |       0 |        0 |       0 |       0 | 3-217             
+  collaborative-playlist-view.tsx          |       0 |        0 |       0 |       0 | 3-334             
+  collaborative-playlist.tsx               |       0 |        0 |       0 |       0 | 3-126             
+  curator-stats.tsx                        |       0 |        0 |       0 |       0 | 3-52              
+  dashboard-view.tsx                       |       0 |        0 |       0 |       0 | 3-131             
+  discovery-feed.tsx                       |       0 |        0 |       0 |       0 | 3-121             
+  dj-profile-card.tsx                      |       0 |        0 |       0 |       0 | 3-234             
+  dj-queue-panel.tsx                       |       0 |        0 |       0 |       0 | 1-406             
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-114             
+  listener-wall.tsx                        |       0 |        0 |       0 |       0 | 3-154             
+  live-feed.tsx                            |       0 |        0 |       0 |       0 | 3-111             
+  notification-center.tsx                  |       0 |        0 |       0 |       0 | 3-253             
+  player.tsx                               |       0 |        0 |       0 |       0 | 3-45              
+  playlist-challenges.tsx                  |       0 |        0 |       0 |       0 | 3-215             
+  playlist-import.tsx                      |       0 |        0 |       0 |       0 | 8-164             
+  playlist-insights.tsx                    |       0 |        0 |       0 |       0 | 3-94              
+  playlist-track-card.tsx                  |       0 |        0 |       0 |       0 | 3-138             
+  queue-settings.tsx                       |       0 |        0 |       0 |       0 | 8-97              
+  reaction-overlay.tsx                     |       0 |        0 |       0 |       0 | 3-96              
+  scheduled-shows.tsx                      |       0 |        0 |       0 |       0 | 3-191             
+  song-request-queue.tsx                   |       0 |        0 |       0 |       0 | 3-314             
+  spotify-connect-button.tsx               |       0 |        0 |       0 |       0 | 8-34              
+  station-analytics.tsx                    |       0 |        0 |       0 |       0 | 3-92              
+  station-card.tsx                         |       0 |        0 |       0 |       0 | 3-69              
+  station-chat.tsx                         |       0 |        0 |       0 |       0 | 3-288             
+  track-comments.tsx                       |       0 |        0 |       0 |       0 | 3-195             
+  track-reactions.tsx                      |       0 |        0 |       0 |       0 | 3-175             
+  track-search.tsx                         |       0 |        0 |       0 |       0 | 8-128             
+  track-selection-modal.tsx                |       0 |        0 |       0 |       0 | 3-179             
+  track-voting-controls.tsx                |       0 |        0 |       0 |       0 | 1-173             
+  vinyl-broadcast.tsx                      |       0 |        0 |       0 |       0 | 3-242             
+ src/components/landing                    |       0 |        0 |       0 |       0 |                   
+  bento-grid.tsx                           |       0 |      100 |       0 |       0 | 3-104             
+  hero.tsx                                 |       0 |        0 |       0 |       0 | 3-109             
+  landing-page.tsx                         |       0 |      100 |       0 |       0 | 3-7               
+ src/components/ui                         |       0 |        0 |       0 |       0 |                   
+  dropdown-menu.tsx                        |       0 |        0 |       0 |       0 | 3-198             
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-152             
+  loading-state.tsx                        |       0 |        0 |       0 |       0 | 3-161             
+  magnetic-button.tsx                      |       0 |        0 |       0 |       0 | 3-43              
+ src/hooks                                 |       0 |        0 |       0 |       0 |                   
+  use-fetch.ts                             |       0 |        0 |       0 |       0 | 1-109             
+ src/lib                                   |    3.06 |      4.3 |    2.75 |    3.17 |                   
+  RadioSyncEngine.ts                       |       0 |        0 |       0 |       0 | 7-199             
+  cache.ts                                 |       0 |        0 |       0 |       0 | 6-237             
+  env.ts                                   |       0 |        0 |       0 |       0 | 1-60              
+  error-handler.ts                         |       0 |        0 |       0 |       0 | 1-43              
+  logger.ts                                |       0 |        0 |       0 |       0 | 1-45              
+  optimistic-updates.ts                    |       0 |        0 |       0 |       0 | 6-191             
+  radio-station.tsx                        |       0 |        0 |       0 |       0 | 3-166             
+  rate-limit.ts                            |   84.21 |      100 |      75 |   88.88 | 36-37             
+  spotify-api.ts                           |       0 |        0 |       0 |       0 | 6-229             
+  spotify-sdk.tsx                          |       0 |        0 |       0 |       0 | 3-121             
+  supabase.ts                              |       0 |        0 |       0 |       0 | 1-39              
+  utils.ts                                 |       0 |      100 |       0 |       0 | 1-5               
+  websocket.tsx                            |       0 |        0 |       0 |       0 | 3-156             
+ src/types                                 |       0 |        0 |       0 |       0 |                   
+  websocket.ts                             |       0 |        0 |       0 |       0 | 239-264           
+-------------------------------------------|---------|----------|---------|---------|-------------------
+Jest: "global" coverage threshold for statements (70%) not met: 0.66%
+Jest: "global" coverage threshold for branches (70%) not met: 0.71%
+Jest: "global" coverage threshold for lines (70%) not met: 0.71%
+Jest: "global" coverage threshold for functions (70%) not met: 0.57%
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+Snapshots:   0 total
+Time:        4.87 s
+Ran all test suites matching src/lib/__tests__/rate-limit.test.ts.

@@ -1,0 +1,21 @@
+import { cn } from "@/lib/utils";
+
+interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+/**
+ * Base Skeleton component for creating loading placeholders
+ *
+ * Usage:
+ * <Skeleton className="h-4 w-[250px]" />
+ */
+export function Skeleton({ className, ...props }: SkeletonProps) {
+    return (
+        <div
+            className={cn(
+                "animate-pulse rounded-md bg-white/10",
+                className
+            )}
+            {...props}
+        />
+    );
+}

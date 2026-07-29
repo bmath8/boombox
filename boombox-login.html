@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BoomBox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --orange: #ff6b00;
+      --orange-glow: rgba(255, 107, 0, 0.5);
+      --chrome: #c0c0c8;
+      --chrome-mid: #909098;
+      --chrome-dark: #606068;
+      --bg-void: #050507;
+      --panel-dark: #0c0c0f;
+      --panel-mid: #141418;
+      --border: #1e1e24;
+    }
+    
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-void);
+      font-family: 'Rajdhani', sans-serif;
+    }
+    
+    /* Ambient background */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 50% 40%, rgba(255, 107, 0, 0.04) 0%, transparent 60%);
+    }
+    
+    .noise {
+      position: fixed;
+      inset: 0;
+      opacity: 0.025;
+      pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    
+    /* ================================
+       BOOMBOX CONTAINER
+       ================================ */
+    .boombox-container {
+      position: relative;
+      padding-top: 35px; /* Space for handle */
+    }
+    
+    /* ================================
+       CARRYING HANDLE - VISIBLE
+       ================================ */
+    .handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    
+    .handle-bar {
+      width: 220px;
+      height: 28px;
+      background: linear-gradient(180deg, var(--chrome) 0%, var(--chrome-mid) 50%, var(--chrome-dark) 100%);
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      box-shadow: 
+        0 -3px 10px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Handle grip indent */
+    .handle-grip {
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 12px;
+      background: linear-gradient(180deg, #1a1a1f 0%, #0a0a0c 100%);
+      border-radius: 6px;
+      border: 2px solid #333;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Handle mounts */
+    .handle-mount {
+      position: absolute;
+      bottom: -12px;
+      width: 28px;
+      height: 20px;
+      background: linear-gradient(180deg, var(--chrome-mid) 0%, var(--chrome-dark) 100%);
+      border-radius: 4px 4px 0 0;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    }
+    
+    .handle-mount::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: #222;
+      border-radius: 50%;
+      border: 2px solid #444;
+    }
+    
+    .handle-mount.left { left: 15px; }
+    .handle-mount.right { right: 15px; }
+    
+    /* ================================
+       BOOMBOX - TRUE 2:1 RECTANGLE
+       ================================ */
+    .boombox {
+      position: relative;
+      width: min(95vw, 1100px);
+      aspect-ratio: 2 / 1;
+      background: linear-gradient(180deg, #1a1a1f 0%, #111114 40%, #0a0a0d 100%);
+      border-radius: 16px;
+      border: 3px solid #252530;
+      box-shadow:
+        0 50px 100px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 0 60px rgba(255, 107, 0, 0.05);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+    
+    /* ================================
+       TOP BAR - CENTERED BRAND
+       ================================ */
+    .top-bar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 12px 25px;
+      background: linear-gradient(180deg, #1e1e24 0%, #18181c 100%);
+      border-bottom: 2px solid var(--border);
+    }
+    
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .top-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+    }
+    
+    .vu-meter {
+      width: 85px;
+      height: 42px;
+      background: linear-gradient(180deg, #080808 0%, #040406 100%);
+      border-radius: 4px;
+      border: 2px solid #1a1a1f;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+    }
+    
+    .vu-label {
+      position: absolute;
+      top: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 6px;
+      color: #444;
+      letter-spacing: 1px;
+    }
+    
+    .vu-needle {
+      position: absolute;
+      bottom: 4px;
+      left: 10px;
+      width: 2px;
+      height: 26px;
+      background: linear-gradient(to top, #cc3300, #ff8800);
+      transform-origin: bottom center;
+      transform: rotate(-35deg);
+      border-radius: 1px;
+      box-shadow: 0 0 6px var(--orange-glow);
+      transition: transform 0.08s ease-out;
+    }
+    
+    .vu-needle::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      width: 6px;
+      height: 6px;
+      background: #1a1a1f;
+      border-radius: 50%;
+      border: 1px solid #333;
+    }
+    
+    .brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: var(--orange);
+      text-shadow: 0 0 30px var(--orange-glow), 0 0 60px rgba(255, 107, 0, 0.3);
+      text-align: center;
+    }
+    
+    .power-led {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .led {
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle at 30% 30%, #ff8800, #cc4400);
+      border-radius: 50%;
+      border: 2px solid #222;
+      box-shadow: 0 0 12px var(--orange-glow);
+      animation: led-pulse 1.5s infinite;
+    }
+    
+    @keyframes led-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    .led-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: var(--orange);
+      letter-spacing: 1px;
+    }
+    
+    /* ================================
+       MAIN BODY - 3 COLUMNS
+       ================================ */
+    .main-body {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr 1fr;
+      gap: 0;
+      padding: 15px 20px;
+    }
+    
+    /* ================================
+       SPEAKERS
+       ================================ */
+    .speaker-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    
+    .speaker {
+      position: relative;
+      width: min(85%, 200px);
+      aspect-ratio: 1;
+    }
+    
+    .speaker-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #060608;
+      border-radius: 50%;
+      border: 5px solid;
+      border-color: #2a2a30 #1a1a1f #151518 #222228;
+      box-shadow: 
+        inset 0 0 30px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+    
+    .speaker-grille {
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      background: 
+        repeating-radial-gradient(circle at center, transparent 0px, transparent 2px, #0a0a0a 2px, #0a0a0a 3px),
+        radial-gradient(circle, #121215 0%, #080808 100%);
+    }
+    
+    .speaker-cone {
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #28282d 0%, #18181c 50%, #0c0c0f 100%);
+      border: 3px solid #1a1a1f;
+      box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.05s ease-out;
+    }
+    
+    .cone-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    
+    .cone-ring:nth-child(1) { inset: 15%; }
+    .cone-ring:nth-child(2) { inset: 35%; }
+    .cone-ring:nth-child(3) { inset: 55%; }
+    
+    .dust-cap {
+      position: absolute;
+      inset: 35%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #28282d 0%, #18181c 60%, #101014 100%);
+      border: 2px solid #1e1e22;
+      box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.05);
+    }
+    
+    .speaker-label {
+      margin-top: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .speaker-label::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--orange);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--orange-glow);
+    }
+    
+    /* ================================
+       CENTER CONSOLE
+       ================================ */
+    .center-console {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: linear-gradient(180deg, #0e0e11 0%, #0a0a0c 100%);
+      border-radius: 10px;
+      border: 2px solid var(--border);
+      padding: 12px;
+    }
+    
+    /* DISPLAY */
+    .display {
+      background: #040406;
+      border-radius: 8px;
+      border: 2px solid #1a1a1f;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+    
+    .visualizer-wrap {
+      position: relative;
+      height: 90px;
+    }
+    
+    .visualizer-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Scanlines */
+    .visualizer-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
+    .display-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border-top: 1px solid #151518;
+    }
+    
+    .status {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: #444;
+      letter-spacing: 1px;
+    }
+    
+    .status.live {
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .status.live::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: led-pulse 1s infinite;
+    }
+    
+    /* VIZ SWITCHER */
+    .viz-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+    
+    .viz-btn {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #1a1a1f 0%, #141418 100%);
+      border: 1px solid #2a2a32;
+      border-radius: 4px;
+      color: #555;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .viz-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      box-shadow: 0 0 10px var(--orange-glow);
+    }
+    
+    .viz-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 8px;
+      color: var(--orange);
+      letter-spacing: 1px;
+      min-width: 110px;
+      text-align: center;
+    }
+    
+    .viz-dots {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .viz-dot {
+      width: 7px;
+      height: 7px;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .viz-dot:hover {
+      background: rgba(255, 107, 0, 0.3);
+    }
+    
+    .viz-dot.active {
+      background: var(--orange);
+      box-shadow: 0 0 8px var(--orange-glow);
+    }
+    
+    /* ================================
+       CASSETTE DECK / AUTH - MORE SPACIOUS
+       ================================ */
+    .cassette-deck {
+      background: linear-gradient(180deg, #111114 0%, #0c0c0f 100%);
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      overflow: hidden;
+    }
+    
+    .deck-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 12px;
+      background: linear-gradient(180deg, #18181c 0%, #141418 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .deck-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: #555;
+      letter-spacing: 1px;
+    }
+    
+    .tape-counter {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--orange);
+      background: #080808;
+      padding: 3px 10px;
+      border-radius: 3px;
+      border: 1px solid #1a1a1f;
+      letter-spacing: 2px;
+      min-width: 70px;
+      text-align: center;
+    }
+    
+    .deck-body {
+      padding: 12px 15px;
+    }
+    
+    /* Cassette Window with Reels - More Spacious */
+    .cassette-window {
+      background: linear-gradient(180deg, #0a0a0c 0%, #060608 100%);
+      border-radius: 8px;
+      border: 2px solid #1a1a1f;
+      padding: 12px 15px;
+      position: relative;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.8);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    /* Tape Reels - Left side */
+    .tape-reels {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+    
+    .reels-row {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .reel {
+      width: 28px;
+      height: 28px;
+      background: conic-gradient(from 0deg, #1a1a1f, #2a2a30, #1a1a1f, #2a2a30, #1a1a1f);
+      border-radius: 50%;
+      border: 2px solid #333;
+      position: relative;
+    }
+    
+    .reel.spinning {
+      animation: spin-reel 0.8s linear infinite;
+    }
+    
+    @keyframes spin-reel {
+      to { transform: rotate(360deg); }
+    }
+    
+    .reel::after {
+      content: '';
+      position: absolute;
+      inset: 30%;
+      background: #0a0a0c;
+      border-radius: 50%;
+      border: 1px solid #222;
+    }
+    
+    .reel-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 6px;
+      color: #444;
+      letter-spacing: 1px;
+    }
+    
+    /* Auth Form - Takes remaining space */
+    .auth-form {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .input-group {
+      flex: 1;
+      position: relative;
+    }
+    
+    .input-label {
+      position: absolute;
+      top: -7px;
+      left: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 7px;
+      color: #444;
+      background: #0a0a0c;
+      padding: 0 4px;
+      letter-spacing: 1px;
+    }
+    
+    .auth-input {
+      width: 100%;
+      padding: 11px 14px;
+      background: #080808;
+      border: 2px solid #1e1e24;
+      border-radius: 5px;
+      color: #fff;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+    }
+    
+    .auth-input::placeholder {
+      color: #333;
+    }
+    
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--orange);
+      box-shadow: 0 0 15px rgba(255, 107, 0, 0.15);
+    }
+    
+    /* Transport Controls - BELOW the form */
+    .transport-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-top: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .transport-controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    
+    .transport-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #1e1e24 0%, #141418 100%);
+      border: 2px solid #2a2a32;
+      border-radius: 5px;
+      color: #555;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    
+    .transport-btn:hover {
+      border-color: #444;
+      color: #888;
+    }
+    
+    .transport-btn:active {
+      transform: scale(0.95);
+    }
+    
+    .transport-btn.play {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(180deg, var(--orange) 0%, #cc5500 100%);
+      border-color: #ff8800;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--orange-glow);
+    }
+    
+    .transport-btn.play:hover {
+      box-shadow: 0 0 30px var(--orange-glow);
+      transform: scale(1.05);
+    }
+    
+    /* OAuth Button */
+    .oauth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(180deg, #1DB954 0%, #169c46 100%);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(29, 185, 84, 0.25);
+    }
+    
+    .oauth-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(29, 185, 84, 0.35);
+    }
+    
+    /* ================================
+       BOTTOM STRIP - EQ & VENTS
+       ================================ */
+    .bottom-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      padding: 10px 25px;
+      background: linear-gradient(180deg, #0e0e11 0%, #111114 100%);
+      border-top: 2px solid var(--border);
+    }
+    
+    /* EQ Sliders */
+    .eq-section {
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+    }
+    
+    .eq-slider {
+      width: 6px;
+      height: 28px;
+      background: #080808;
+      border-radius: 3px;
+      border: 1px solid #1a1a1f;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .eq-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, var(--orange), #ffaa00);
+      border-radius: 2px;
+      transition: height 0.1s ease-out;
+    }
+    
+    /* Vents */
+    .vents {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .vent {
+      width: 22px;
+      height: 3px;
+      background: #060608;
+      border-radius: 1px;
+      border: 1px solid #1a1a1f;
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient"></div>
+  <div class="noise"></div>
+
+  <div class="boombox-container">
+    
+    <!-- Carrying Handle - Now Visible -->
+    <div class="handle">
+      <div class="handle-bar">
+        <div class="handle-grip"></div>
+        <div class="handle-mount left"></div>
+        <div class="handle-mount right"></div>
+      </div>
+    </div>
+    
+    <div class="boombox">
+      
+      <!-- Top Bar - Properly Centered Brand -->
+      <div class="top-bar">
+        <div class="top-left">
+          <div class="vu-meter">
+            <span class="vu-label">VU LEFT</span>
+            <div class="vu-needle" id="vuL"></div>
+          </div>
+        </div>
+        
+        <div class="brand">BOOMBOX</div>
+        
+        <div class="top-right">
+          <div class="vu-meter">
+            <span class="vu-label">VU RIGHT</span>
+            <div class="vu-needle" id="vuR"></div>
+          </div>
+          <div class="power-led">
+            <div class="led"></div>
+            <span class="led-label">POWER</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Body -->
+      <div class="main-body">
+        
+        <!-- Left Speaker -->
+        <div class="speaker-section">
+          <div class="speaker">
+            <div class="speaker-frame">
+              <div class="speaker-grille"></div>
+              <div class="speaker-cone" id="coneL">
+                <div class="cone-ring"></div>
+                <div class="cone-ring"></div>
+                <div class="cone-ring"></div>
+                <div class="dust-cap"></div>
+              </div>
+            </div>
+          </div>
+          <div class="speaker-label">LEFT</div>
+        </div>
+        
+        <!-- Center Console -->
+        <div class="center-console">
+          
+          <!-- Display -->
+          <div class="display">
+            <div class="visualizer-wrap">
+              <canvas id="visualizer"></canvas>
+            </div>
+            <div class="display-footer">
+              <span class="status">48kHz • STEREO</span>
+              <span class="status live">STREAMING</span>
+            </div>
+          </div>
+          
+          <!-- Visualizer Controls -->
+          <div class="viz-controls">
+            <button class="viz-btn" onclick="prevViz()">‹</button>
+            <span class="viz-name" id="vizName">HYBRID SPECTRUM</span>
+            <div class="viz-dots">
+              <div class="viz-dot active" onclick="setViz(0)"></div>
+              <div class="viz-dot" onclick="setViz(1)"></div>
+              <div class="viz-dot" onclick="setViz(2)"></div>
+              <div class="viz-dot" onclick="setViz(3)"></div>
+              <div class="viz-dot" onclick="setViz(4)"></div>
+            </div>
+            <button class="viz-btn" onclick="nextViz()">›</button>
+          </div>
+          
+          <!-- Cassette Deck / Auth - More Spacious -->
+          <div class="cassette-deck">
+            <div class="deck-header">
+              <span class="deck-label">▶ DECK A — AUTHENTICATE</span>
+              <span class="tape-counter" id="counter">READY</span>
+            </div>
+            
+            <div class="deck-body">
+              <div class="cassette-window">
+                <!-- Tape Reels on Left -->
+                <div class="tape-reels">
+                  <div class="reels-row">
+                    <div class="reel" id="reel1"></div>
+                    <div class="reel" id="reel2"></div>
+                  </div>
+                  <span class="reel-label">TAPE</span>
+                </div>
+                
+                <!-- Auth Form -->
+                <form class="auth-form" onsubmit="handleAuth(event)">
+                  <div class="input-row">
+                    <div class="input-group">
+                      <span class="input-label">EMAIL</span>
+                      <input type="email" class="auth-input" id="email" placeholder="your@email.com" oninput="onInput()">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-label">PASSWORD</span>
+                      <input type="password" class="auth-input" id="password" placeholder="••••••••" oninput="onInput()">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            
+            <!-- Transport Controls - Below Login -->
+            <div class="transport-section">
+              <div class="transport-controls">
+                <button class="transport-btn">⏮</button>
+                <button class="transport-btn">⏪</button>
+                <button class="transport-btn play" onclick="handleAuth(event)">▶</button>
+                <button class="transport-btn">⏩</button>
+                <button class="transport-btn">⏭</button>
+                <button class="transport-btn">⏸</button>
+                <button class="transport-btn">⏹</button>
+                <button class="transport-btn">⏺</button>
+              </div>
+              
+              <button class="oauth-btn">
+                <span>●</span>
+                SPOTIFY
+              </button>
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Right Speaker -->
+        <div class="speaker-section">
+          <div class="speaker">
+            <div class="speaker-frame">
+              <div class="speaker-grille"></div>
+              <div class="speaker-cone" id="coneR">
+                <div class="cone-ring"></div>
+                <div class="cone-ring"></div>
+                <div class="cone-ring"></div>
+                <div class="dust-cap"></div>
+              </div>
+            </div>
+          </div>
+          <div class="speaker-label">RIGHT</div>
+        </div>
+        
+      </div>
+      
+      <!-- Bottom Strip -->
+      <div class="bottom-strip">
+        <div class="eq-section" id="eqSection"></div>
+        <div class="vents" id="vents"></div>
+        <div class="eq-section" id="eqSection2"></div>
+      </div>
+      
+    </div>
+  </div>
+
+  <script>
+    // Generate EQ sliders
+    const eqBands = 12;
+    ['eqSection', 'eqSection2'].forEach(id => {
+      const container = document.getElementById(id);
+      for (let i = 0; i < eqBands; i++) {
+        const slider = document.createElement('div');
+        slider.className = 'eq-slider';
+        const fill = document.createElement('div');
+        fill.className = 'eq-fill';
+        fill.style.height = (30 + Math.random() * 60) + '%';
+        fill.dataset.index = i;
+        slider.appendChild(fill);
+        container.appendChild(slider);
+      }
+    });
+    
+    // Generate vents
+    const ventsContainer = document.getElementById('vents');
+    for (let i = 0; i < 18; i++) {
+      const vent = document.createElement('div');
+      vent.className = 'vent';
+      ventsContainer.appendChild(vent);
+    }
+    
+    // Canvas setup
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+    
+    function resize() {
+      canvas.width = canvas.offsetWidth * devicePixelRatio;
+      canvas.height = canvas.offsetHeight * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    
+    // Audio simulation
+    const BANDS = 64;
+    let audio = new Array(BANDS).fill(0);
+    let time = 0;
+    let beat = 0;
+    let inputActivity = 0;
+    
+    function updateAudio() {
+      time += 0.016;
+      beat += 0.07;
+      
+      const pulse = Math.pow(Math.sin(beat), 8);
+      const sub = Math.pow(Math.sin(beat * 2), 6) * 0.4;
+      
+      for (let i = 0; i < BANDS; i++) {
+        const f = i / BANDS;
+        const bass = Math.exp(-f * 3) * (0.6 + pulse * 0.5);
+        const mid = Math.exp(-Math.pow((f - 0.3) * 4, 2)) * (0.35 + sub * 0.3);
+        const high = f * 0.25 * (0.3 + Math.random() * 0.15);
+        const input = inputActivity * Math.exp(-Math.abs(f - 0.5) * 3);
+        const target = Math.min(1, bass + mid + high + Math.random() * 0.08 + input);
+        audio[i] += (target - audio[i]) * 0.25;
+      }
+      
+      inputActivity *= 0.9;
+      
+      // VU meters
+      const left = audio.slice(0, 32).reduce((a, b) => a + b) / 32;
+      const right = audio.slice(32).reduce((a, b) => a + b) / 32;
+      document.getElementById('vuL').style.transform = `rotate(${-35 + left * 70}deg)`;
+      document.getElementById('vuR').style.transform = `rotate(${-35 + right * 70}deg)`;
+      
+      // Speaker cones
+      const bassLevel = audio.slice(0, 8).reduce((a, b) => a + b) / 8;
+      const scale = 1 + bassLevel * 0.015;
+      document.getElementById('coneL').style.transform = `scale(${scale})`;
+      document.getElementById('coneR').style.transform = `scale(${scale})`;
+      
+      // EQ sliders
+      document.querySelectorAll('.eq-fill').forEach((fill, i) => {
+        const idx = Math.floor((i % eqBands) / eqBands * BANDS);
+        fill.style.height = (20 + audio[idx] * 75) + '%';
+      });
+    }
+    
+    // Visualizers
+    const VIZ = [
+      { id: 'hybrid', name: 'HYBRID SPECTRUM' },
+      { id: 'mirror', name: 'MIRROR BARS' },
+      { id: 'terrain', name: 'TERRAIN PEAKS' },
+      { id: 'aurora', name: 'PARTICLE AURORA' },
+      { id: 'smoke', name: 'SMOKE TRAIL' }
+    ];
+    let vizIndex = 0;
+    let peaks = new Array(48).fill(0);
+    let peakVel = new Array(48).fill(0);
+    let terrain = [];
+    let smoke = [];
+    let particles = [];
+    
+    for (let i = 0; i < 10; i++) terrain.push(new Array(BANDS).fill(0));
+    
+    function setViz(i) {
+      vizIndex = i;
+      document.getElementById('vizName').textContent = VIZ[i].name;
+      document.querySelectorAll('.viz-dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }
+    
+    function nextViz() { setViz((vizIndex + 1) % VIZ.length); }
+    function prevViz() { setViz((vizIndex - 1 + VIZ.length) % VIZ.length); }
+    
+    // Visualizer drawing functions
+    function drawHybrid() {
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      const bars = 48, barW = (w * 0.92) / bars - 2, startX = w * 0.04, maxH = h * 0.85;
+      
+      ctx.fillStyle = 'rgba(4,4,6,0.3)';
+      ctx.fillRect(0, 0, w, h);
+      
+      for (let i = 0; i < bars; i++) {
+        const val = audio[Math.floor(i / bars * BANDS)] || 0;
+        const barH = val * maxH;
+        const x = startX + i * (barW + 2);
+        const segs = Math.floor(barH / 4);
+        
+        if (val > peaks[i]) { peaks[i] = val; peakVel[i] = 0; }
+        else { peakVel[i] += 0.001; peaks[i] -= peakVel[i]; if (peaks[i] < 0) peaks[i] = 0; }
+        
+        for (let s = 0; s < segs; s++) {
+          const y = h - 6 - s * 4;
+          const int = s / (maxH / 4);
+          const hue = int < 0.5 ? 120 - int * 160 : int < 0.8 ? 40 - (int - 0.5) * 80 : 20;
+          ctx.fillStyle = `hsl(${hue},85%,${45 + int * 15}%)`;
+          ctx.fillRect(x, y, barW, 3);
+        }
+        
+        if (peaks[i] > 0.05) {
+          ctx.fillStyle = 'rgba(255,255,255,0.9)';
+          ctx.shadowColor = '#ff6b35';
+          ctx.shadowBlur = 6;
+          ctx.fillRect(x, h - 6 - peaks[i] * maxH, barW, 2);
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+    
+    function drawMirror() {
+      const w = canvas.offsetWidth, h = canvas.offsetHeight, cy = h / 2;
+      const bars = 48, barW = (w * 0.88) / bars - 2, startX = w * 0.06, maxH = h * 0.4;
+      
+      ctx.fillStyle = '#040406';
+      ctx.fillRect(0, 0, w, h);
+      
+      for (let i = 0; i < bars; i++) {
+        const val = audio[Math.floor(i / bars * BANDS)] || 0;
+        const barH = val * maxH;
+        const x = startX + i * (barW + 2);
+        const hue = 20 + (i / bars) * 160;
+        
+        const rg = ctx.createLinearGradient(x, cy + 3, x, cy + barH * 0.5);
+        rg.addColorStop(0, `hsla(${hue},80%,50%,0.25)`);
+        rg.addColorStop(1, `hsla(${hue},80%,30%,0)`);
+        ctx.fillStyle = rg;
+        ctx.fillRect(x, cy + 3, barW, barH * 0.5);
+        
+        ctx.shadowColor = `hsl(${hue},100%,50%)`;
+        ctx.shadowBlur = 8 * val;
+        const g = ctx.createLinearGradient(x, cy - barH, x, cy);
+        g.addColorStop(0, `hsla(${hue},100%,70%,1)`);
+        g.addColorStop(1, `hsla(${hue},80%,40%,0.8)`);
+        ctx.fillStyle = g;
+        ctx.fillRect(x, cy - barH, barW, barH);
+        ctx.shadowBlur = 0;
+      }
+      
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      ctx.fillRect(0, cy - 1, w, 2);
+    }
+    
+    function drawTerrain() {
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      const rows = 8, bandW = (w * 0.9) / BANDS, startX = w * 0.05, baseY = h * 0.9, maxH = h * 0.6;
+      
+      terrain.unshift([...audio]);
+      if (terrain.length > rows) terrain.pop();
+      
+      ctx.fillStyle = '#050508';
+      ctx.fillRect(0, 0, w, h);
+      
+      for (let r = rows - 1; r >= 0; r--) {
+        const data = terrain[r] || [];
+        const yOff = baseY - r * (h * 0.07);
+        const scale = Math.pow(0.93, r);
+        const alpha = 1 - (r / rows) * 0.7;
+        const xOff = (1 - scale) * w * 0.5;
+        
+        ctx.beginPath();
+        ctx.moveTo(xOff + startX, yOff);
+        for (let i = 0; i < BANDS; i++) {
+          ctx.lineTo(xOff + startX + i * bandW * scale, yOff - (data[i] || 0) * maxH * scale);
+        }
+        ctx.lineTo(xOff + startX + (BANDS - 1) * bandW * scale, yOff);
+        ctx.closePath();
+        
+        const fg = ctx.createLinearGradient(0, yOff - maxH, 0, yOff);
+        fg.addColorStop(0, `rgba(255,107,53,${alpha * 0.5})`);
+        fg.addColorStop(0.5, `rgba(139,92,246,${alpha * 0.3})`);
+        fg.addColorStop(1, `rgba(15,15,25,${alpha * 0.7})`);
+        ctx.fillStyle = fg;
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.moveTo(xOff + startX, yOff);
+        for (let i = 0; i < BANDS; i++) {
+          ctx.lineTo(xOff + startX + i * bandW * scale, yOff - (data[i] || 0) * maxH * scale);
+        }
+        ctx.strokeStyle = r < 2 ? `rgba(255,140,90,${alpha})` : `rgba(180,160,200,${alpha * 0.5})`;
+        ctx.lineWidth = r < 2 ? 1.5 : 1;
+        if (r < 2) { ctx.shadowColor = '#ff6b35'; ctx.shadowBlur = 5; }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+    }
+    
+    function drawAurora() {
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      const bandW = w / BANDS, baseY = h - 10;
+      
+      ctx.fillStyle = 'rgba(4,4,6,0.15)';
+      ctx.fillRect(0, 0, w, h);
+      
+      for (let i = 0; i < BANDS; i++) {
+        const x = i * bandW + bandW / 2;
+        const int = audio[i] || 0;
+        if (int > 0.3 && Math.random() < int * 0.35 && particles.length < 350) {
+          const f = i / BANDS;
+          particles.push({
+            x: x + (Math.random() - 0.5) * bandW,
+            y: baseY - int * 8,
+            vx: (Math.random() - 0.5) * 1.2,
+            vy: -1.2 - Math.random() * 2.5 * int,
+            life: 1,
+            decay: 0.012 + Math.random() * 0.01,
+            size: 1.5 + Math.random() * 2 * int,
+            hue: f < 0.3 ? 20 : f < 0.6 ? 280 : 185
+          });
+        }
+      }
+      
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.035;
+        p.vy *= 0.98;
+        p.life -= p.decay;
+        if (p.life <= 0) { particles.splice(i, 1); continue; }
+        
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+        g.addColorStop(0, `hsla(${p.hue},100%,65%,${p.life * 0.7})`);
+        g.addColorStop(1, `hsla(${p.hue},100%,40%,0)`);
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      ctx.strokeStyle = 'rgba(255,107,53,0.2)';
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = '#ff6b35';
+      ctx.shadowBlur = 6;
+      ctx.beginPath();
+      ctx.moveTo(0, baseY);
+      ctx.lineTo(w, baseY);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+    
+    function drawSmoke() {
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      const cy = h / 2, amp = h * 0.38, layers = 6;
+      const pts = 80, step = w / (pts - 1);
+      
+      ctx.fillStyle = 'rgba(4,4,6,0.06)';
+      ctx.fillRect(0, 0, w, h);
+      
+      const wave = [];
+      for (let i = 0; i < pts; i++) {
+        const idx = Math.floor(i / pts * BANDS);
+        wave.push((audio[idx] || 0 - 0.5) * 2 + Math.sin(time * 2 + i * 0.15) * 0.08);
+      }
+      
+      smoke.unshift([...wave]);
+      if (smoke.length > layers) smoke.pop();
+      
+      for (let l = smoke.length - 1; l >= 0; l--) {
+        const data = smoke[l];
+        const alpha = (1 - l / layers) * 0.35;
+        
+        const g = ctx.createLinearGradient(0, cy - amp, 0, cy + amp);
+        g.addColorStop(0, `rgba(6,182,212,${alpha})`);
+        g.addColorStop(0.5, `rgba(139,92,246,${alpha})`);
+        g.addColorStop(1, `rgba(255,107,53,${alpha})`);
+        
+        ctx.beginPath();
+        ctx.moveTo(0, cy + (data[0] || 0) * amp);
+        for (let i = 1; i < pts; i++) {
+          const x = i * step, y = cy + (data[i] || 0) * amp;
+          const px = (i - 1) * step, py = cy + (data[i - 1] || 0) * amp;
+          ctx.quadraticCurveTo(px, py, (x + px) / 2, (y + py) / 2);
+        }
+        ctx.strokeStyle = g;
+        ctx.lineWidth = 5 - l * 0.5;
+        ctx.lineCap = 'round';
+        ctx.shadowColor = 'rgba(139,92,246,0.2)';
+        ctx.shadowBlur = l * 1.5;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+      
+      ctx.beginPath();
+      ctx.moveTo(0, cy + (wave[0] || 0) * amp);
+      for (let i = 1; i < pts; i++) {
+        const x = i * step, y = cy + (wave[i] || 0) * amp;
+        const px = (i - 1) * step, py = cy + (wave[i - 1] || 0) * amp;
+        ctx.quadraticCurveTo(px, py, (x + px) / 2, (y + py) / 2);
+      }
+      ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+    
+    // Animation loop
+    function animate() {
+      updateAudio();
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      
+      switch (vizIndex) {
+        case 0: drawHybrid(); break;
+        case 1: drawMirror(); break;
+        case 2: drawTerrain(); break;
+        case 3: drawAurora(); break;
+        case 4: drawSmoke(); break;
+      }
+      
+      ctx.restore();
+      requestAnimationFrame(animate);
+    }
+    animate();
+    
+    // Input handlers
+    function onInput() {
+      inputActivity = 0.5;
+      document.getElementById('reel1').classList.add('spinning');
+      document.getElementById('reel2').classList.add('spinning');
+      document.getElementById('counter').textContent = 'INPUT...';
+      
+      clearTimeout(window.inputTimeout);
+      window.inputTimeout = setTimeout(() => {
+        document.getElementById('reel1').classList.remove('spinning');
+        document.getElementById('reel2').classList.remove('spinning');
+        document.getElementById('counter').textContent = 'READY';
+      }, 500);
+    }
+    
+    function handleAuth(e) {
+      if (e) e.preventDefault();
+      document.getElementById('reel1').classList.add('spinning');
+      document.getElementById('reel2').classList.add('spinning');
+      document.getElementById('counter').textContent = 'LOADING';
+      
+      setTimeout(() => {
+        document.getElementById('reel1').classList.remove('spinning');
+        document.getElementById('reel2').classList.remove('spinning');
+        document.getElementById('counter').textContent = 'READY';
+      }, 2000);
+    }
+    
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') nextViz();
+      if (e.key === 'ArrowLeft') prevViz();
+      if (e.key >= '1' && e.key <= '5') setViz(parseInt(e.key) - 1);
+    });
+  </script>
+</body>
+</html>

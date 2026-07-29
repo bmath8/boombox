@@ -1,0 +1,20 @@
+/**
+ * Database Migration System using node-pg-migrate
+ * Provides safe schema changes in production
+ */
+{
+    "name": "fam-music-migrations",
+    "version": "1.0.0",
+    "description": "Database migrations for FAM Music V.2",
+    "scripts": {
+        "migrate": "node-pg-migrate up",
+        "migrate:down": "node-pg-migrate down",
+        "migrate:create": "node-pg-migrate create",
+        "migrate:redo": "node-pg-migrate redo"
+    },
+    "dependencies": {
+        "node-pg-migrate": "^7.0.0",
+        "pg": "^8.11.3",
+        "dotenv": "^16.3.1"
+    }
+}

@@ -1,0 +1,249 @@
+{
+    "name": "Spotify Real-Time Sync",
+    "nodes": [
+        {
+            "parameters": {},
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "id": "schedule-trigger",
+            "webhookId": "",
+            "credentials": {},
+            "notes": "Run every 30 seconds to check currently playing"
+        },
+        {
+            "parameters": {
+                "url": "https://api.spotify.com/v1/me/player/currently-playing",
+                "authentication": "predefinedCredentialType",
+                "nodeCredentialType": "spotifyOAuth2Api",
+                "options": {
+                    "retry": {
+                        "maxTries": 5,
+                        "waitBetweenTries": 1000
+                    },
+                    "timeout": 10000
+                }
+            },
+            "name": "Get Currently Playing",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                450,
+                300
+            ],
+            "id": "get-currently-playing",
+            "continueOnFail": true,
+            "retryOnFail": true,
+            "maxTries": 5,
+            "waitBetweenTries": 1000
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "boolean": [
+                        {
+                            "value1": "={{$json.is_playing}}",
+                            "value2": true
+                        }
+                    ]
+                }
+            },
+            "name": "Is Playing?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ],
+            "id": "is-playing"
+        },
+        {
+            "parameters": {
+                "functionCode": "// Generate idempotency key to prevent duplicates\nconst crypto = require('crypto');\n\nconst item = $input.item.json;\nconst track = item.item;\nconst userId = '{{$node[\"Get User\"].json.id}}';\n\nconst idempotencyKey = crypto\n  .createHash('sha256')\n  .update(`${userId}-${track.id}-${item.timestamp}`)\n  .digest('hex');\n\nreturn {\n  json: {\n    user_id: userId,\n    platform: 'spotify',\n    track_id: track.id,\n    track_name: track.name,\n    artists: track.artists.map(a => a.name).join(', '),\n    album_name: track.album.name,\n    album_art_url: track.album.images[0]?.url,\n    duration_ms: track.duration_ms,\n    played_at: new Date(item.timestamp).toISOString(),\n    context_type: item.context?.type,\n    context_uri: item.context?.uri,\n    idempotency_key: idempotencyKey,\n    is_skipped: false\n  }\n};"
+            },
+            "name": "Transform Data",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                850,
+                200
+            ],
+            "id": "transform-data"
+        },
+        {
+            "parameters": {
+                "operation": "executeQuery",
+                "query": "INSERT INTO listening_activity (\n  user_id, platform, track_id, track_name, artists, \n  album_name, album_art_url, duration_ms, played_at, \n  context_type, context_uri, idempotency_key, is_skipped\n)\nVALUES (\n  $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13\n)\nON CONFLICT (idempotency_key) DO NOTHING\nRETURNING activity_id;",
+                "options": {}
+            },
+            "name": "Save to Database",
+            "type": "n8n-nodes-base.postgres",
+            "typeVersion": 2,
+            "position": [
+                1050,
+                200
+            ],
+            "id": "save-to-database",
+            "credentials": {
+                "postgres": {
+                    "id": "postgres-credentials",
+                    "name": "FAM Music Database"
+                }
+            },
+            "continueOnFail": true,
+            "retryOnFail": true,
+            "maxTries": 3
+        },
+        {
+            "parameters": {
+                "functionCode": "// Cache track metadata in Redis\nconst Redis = require('ioredis');\nconst redis = new Redis(process.env.REDIS_URL);\n\nconst track = $input.item.json;\n\nconst cacheKey = `track:${track.track_id}`;\nconst cacheData = {\n  track_id: track.track_id,\n  track_name: track.track_name,\n  artists: track.artists,\n  album_name: track.album_name,\n  album_art_url: track.album_art_url,\n  duration_ms: track.duration_ms\n};\n\nawait redis.setex(cacheKey, 86400, JSON.stringify(cacheData));\n\nreturn { json: track };"
+            },
+            "name": "Cache Track Data",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1250,
+                200
+            ],
+            "id": "cache-track-data"
+        },
+        {
+            "parameters": {
+                "functionCode": "// Publish to WebSocket via Redis Pub/Sub\nconst Redis = require('ioredis');\nconst redis = new Redis(process.env.REDIS_URL);\n\nconst activity = $input.item.json;\n\n// Get user's friends from database\nconst { Client } = require('pg');\nconst client = new Client({ connectionString: process.env.DATABASE_URL });\nawait client.connect();\n\nconst result = await client.query(\n  `SELECT friend_id FROM friendships \n   WHERE user_id = $1 AND status = 'accepted'`,\n  [activity.user_id]\n);\n\nconst friends = result.rows.map(r => r.friend_id);\nawait client.end();\n\n// Publish to Redis\nawait redis.publish('feed-updates', JSON.stringify({\n  targetUsers: friends,\n  payload: {\n    type: 'feed:new-activity',\n    userId: activity.user_id,\n    activity: activity,\n    timestamp: Date.now()\n  }\n}));\n\nreturn { json: { published: true, friendCount: friends.length } };"
+            },
+            "name": "Publish to WebSocket",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1450,
+                200
+            ],
+            "id": "publish-to-websocket"
+        },
+        {
+            "parameters": {
+                "functionCode": "// Check for shared songs with friends\nconst { Client } = require('pg');\nconst client = new Client({ connectionString: process.env.DATABASE_URL });\nawait client.connect();\n\nconst activity = $input.item.json;\n\n// Find friends who also listened to this track\nconst result = await client.query(\n  `SELECT DISTINCT la.user_id\n   FROM listening_activity la\n   JOIN friendships f ON (\n     (f.user_id = $1 AND f.friend_id = la.user_id) OR\n     (f.friend_id = $1 AND f.user_id = la.user_id)\n   )\n   WHERE la.track_id = $2 \n   AND la.user_id != $1\n   AND f.status = 'accepted'\n   AND la.played_at >= NOW() - INTERVAL '7 days'`,\n  [activity.user_id, activity.track_id]\n);\n\nconst sharedWith = result.rows;\n\n// Create shared song records\nfor (const friend of sharedWith) {\n  await client.query(\n    `INSERT INTO shared_songs (\n       user1_id, user2_id, track_id, track_name, artists, \n       discovery_type, last_updated_at\n     )\n     VALUES ($1, $2, $3, $4, $5, 'exact_match', NOW())\n     ON CONFLICT (user1_id, user2_id, track_id, discovery_type)\n     DO UPDATE SET \n       user1_play_count = shared_songs.user1_play_count + 1,\n       last_updated_at = NOW()`,\n    [activity.user_id, friend.user_id, activity.track_id, \n     activity.track_name, activity.artists]\n  );\n}\n\nawait client.end();\n\nreturn { json: { sharedWith: sharedWith.length } };"
+            },
+            "name": "Detect Shared Songs",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1650,
+                200
+            ],
+            "id": "detect-shared-songs"
+        },
+        {
+            "parameters": {},
+            "name": "No Data",
+            "type": "n8n-nodes-base.noOp",
+            "typeVersion": 1,
+            "position": [
+                850,
+                400
+            ],
+            "id": "no-data"
+        }
+    ],
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Get Currently Playing",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Get Currently Playing": {
+            "main": [
+                [
+                    {
+                        "node": "Is Playing?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Is Playing?": {
+            "main": [
+                [
+                    {
+                        "node": "Transform Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "No Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Transform Data": {
+            "main": [
+                [
+                    {
+                        "node": "Save to Database",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Save to Database": {
+            "main": [
+                [
+                    {
+                        "node": "Cache Track Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Cache Track Data": {
+            "main": [
+                [
+                    {
+                        "node": "Publish to WebSocket",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Publish to WebSocket": {
+            "main": [
+                [
+                    {
+                        "node": "Detect Shared Songs",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1",
+        "saveManualExecutions": true,
+        "callerPolicy": "workflowsFromSameOwner",
+        "errorWorkflow": "error-handler-workflow"
+    },
+    "staticData": null,
+    "tags": [],
+    "triggerCount": 1,
+    "updatedAt": "2024-11-24T00:00:00.000Z",
+    "versionId": "1"
+}

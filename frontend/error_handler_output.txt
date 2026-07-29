@@ -1,0 +1,278 @@
+
+> frontend@0.1.0 test
+> jest src/lib/__tests__/error-handler.test.ts
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL src/lib/__tests__/error-handler.test.ts
+  Error Handler
+    handleError
+      ΓêÜ should log error to console (2 ms)
+      ΓêÜ should show toast notification by default
+      ΓêÜ should not show toast when silent is true
+      ΓêÜ should handle Error objects
+      ΓêÜ should handle string errors
+      ΓêÜ should handle unknown error types
+      ΓêÜ should handle Supabase errors (1 ms)
+      ├ù should handle network errors (1 ms)
+    AppError
+      ΓêÜ should create AppError with message and code (1 ms)
+      ΓêÜ should be instanceof Error
+      ΓêÜ should include stack trace
+      ΓêÜ should handle AppError in handleError
+    Error Context
+      ΓêÜ should include context in error message
+      ΓêÜ should handle empty context
+    Error Recovery
+      ΓêÜ should not throw when handling errors (1 ms)
+      ΓêÜ should handle null errors gracefully
+      ΓêÜ should handle undefined errors gracefully
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should handle network errors
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "Connection Lost", ObjectContaining {"description": "Please check your internet connection and try again."}
+    Received: "Something Went Wrong", {"action": {"label": "Try Again", "onClick": [Function anonymous]}, "description": "An unexpected error occurred. Please try again or contact support if the problem persists.", "duration": 5000}
+
+    Number of calls: 1
+
+       99 |             handleError(networkError, 'API Call');
+      100 |
+    > 101 |             expect(mockToast.error).toHaveBeenCalledWith(
+          |                                     ^
+      102 |                 'Connection Lost',
+      103 |                 expect.objectContaining({
+      104 |                     description: 'Please check your internet connection and try again.',
+
+      at Object.toHaveBeenCalledWith (src/lib/__tests__/error-handler.test.ts:101:37)
+
+Failed to collect coverage from C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\playlist-track-card.tsx
+ERROR:   x Expression expected
+    ,-[C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\playlist-track-card.tsx:11:1]
+  8 | vote_count: number;
+  9 | position: number;
+ 10 | play_count: number;
+ 11 | user_vote ?: 'up' | 'down' | null;
+    :            ^
+ 12 | };
+ 13 | 
+ 13 | type PlaylistTrackCardProps = {
+    `----
+
+
+Caused by:
+    Syntax Error
+STACK: Error:   x Expression expected
+    ,-[C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\playlist-track-card.tsx:11:1]
+  8 | vote_count: number;
+  9 | position: number;
+ 10 | play_count: number;
+ 11 | user_vote ?: 'up' | 'down' | null;
+    :            ^
+ 12 | };
+ 13 | 
+ 13 | type PlaylistTrackCardProps = {
+    `----
+
+
+Caused by:
+    Syntax Error
+    at Object.transformSync (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\next\dist\build\swc\index.js:1121:33)
+    at transformSync (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\next\dist\build\swc\index.js:1212:21)
+    at process (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\next\dist\build\swc\jest-transformer.js:65:45)
+    at ScriptTransformer.transformSourceAsync (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\@jest\transform\build\index.js:462:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateEmptyCoverage (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\@jest\reporters\build\CoverageWorker.js:92:9)
+-------------------------------------------|---------|----------|---------|---------|-----------------------------------------
+File                                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                       
+-------------------------------------------|---------|----------|---------|---------|-----------------------------------------
+All files                                  |    0.57 |     1.59 |    0.34 |    0.62 |                                         
+ src                                       |       0 |        0 |       0 |       0 |                                         
+  middleware.ts                            |       0 |        0 |       0 |       0 | 1-84                                    
+  test-utils.tsx                           |       0 |      100 |       0 |       0 | 1-51                                    
+ src/app/api/auth/callback/spotify         |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-87                                    
+ src/app/api/health                        |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-53                                    
+ src/app/api/health/advanced               |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-283                                   
+ src/app/api/search                        |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 1-103                                   
+ src/app/api/spotify/playlists             |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-61                                    
+ src/app/api/spotify/playlists/[id]/tracks |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-54                                    
+ src/app/api/spotify/search                |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-78                                    
+ src/app/auth/auth-code-error              |       0 |        0 |       0 |       0 |                                         
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-73                                    
+ src/app/auth/callback                     |       0 |        0 |       0 |       0 |                                         
+  route.ts                                 |       0 |        0 |       0 |       0 | 1-48                                    
+ src/app/login                             |       0 |      100 |       0 |       0 |                                         
+  page.tsx                                 |       0 |      100 |       0 |       0 | 1-3                                     
+ src/app/offline                           |       0 |        0 |       0 |       0 |                                         
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-26                                    
+ src/app/playlists                         |       0 |        0 |       0 |       0 |                                         
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-240                                   
+ src/app/playlists/[id]                    |       0 |        0 |       0 |       0 |                                         
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-9                                     
+ src/app/profile                           |       0 |      100 |       0 |       0 |                                         
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-11                                    
+ src/app/radio                             |       0 |      100 |       0 |       0 |                                         
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-5                                     
+ src/app/radio/[id]                        |       0 |        0 |       0 |       0 |                                         
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-10                                    
+ src/app/search                            |       0 |      100 |       0 |       0 |                                         
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-63                                    
+ src/app/test/spotify                      |       0 |        0 |       0 |       0 |                                         
+  page.tsx                                 |       0 |        0 |       0 |       0 | 8-114                                   
+ src/components                            |       0 |        0 |       0 |       0 |                                         
+  app-header.tsx                           |       0 |      100 |       0 |       0 | 3-12                                    
+  auth-form.tsx                            |       0 |        0 |       0 |       0 | 3-295                                   
+  auth-initializer.tsx                     |       0 |      100 |       0 |       0 | 8-26                                    
+  boombox-login.tsx                        |       0 |        0 |       0 |       0 | 3-230                                   
+  collaborative-playlist-creator.tsx       |       0 |        0 |       0 |       0 | 3-217                                   
+  collaborative-playlist-view.tsx          |       0 |        0 |       0 |       0 | 3-369                                   
+  collaborative-playlist.tsx               |       0 |        0 |       0 |       0 | 3-126                                   
+  curator-stats.tsx                        |       0 |        0 |       0 |       0 | 3-52                                    
+  dashboard-view.tsx                       |       0 |        0 |       0 |       0 | 3-131                                   
+  discovery-feed.tsx                       |       0 |        0 |       0 |       0 | 3-122                                   
+  dj-profile-card.tsx                      |       0 |        0 |       0 |       0 | 3-234                                   
+  dj-queue-panel.tsx                       |       0 |        0 |       0 |       0 | 1-406                                   
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-114                                   
+  keyboard-shortcuts-modal.tsx             |       0 |        0 |       0 |       0 | 3-122                                   
+  keyboard-shortcuts-provider.tsx          |       0 |      100 |       0 |       0 | 3-15                                    
+  listener-wall.tsx                        |       0 |        0 |       0 |       0 | 3-154                                   
+  live-feed.tsx                            |       0 |        0 |       0 |       0 | 3-117                                   
+  mobile-nav.tsx                           |       0 |        0 |       0 |       0 | 3-47                                    
+  notification-center.tsx                  |       0 |        0 |       0 |       0 | 3-253                                   
+  player.tsx                               |       0 |        0 |       0 |       0 | 3-63                                    
+  playlist-challenges.tsx                  |       0 |        0 |       0 |       0 | 3-215                                   
+  playlist-import.tsx                      |       0 |        0 |       0 |       0 | 8-164                                   
+  playlist-insights.tsx                    |       0 |        0 |       0 |       0 | 3-94                                    
+  queue-settings.tsx                       |       0 |        0 |       0 |       0 | 8-97                                    
+  reaction-overlay.tsx                     |       0 |        0 |       0 |       0 | 3-96                                    
+  scheduled-shows.tsx                      |       0 |        0 |       0 |       0 | 3-191                                   
+  search-bar.tsx                           |       0 |        0 |       0 |       0 | 3-254                                   
+  service-worker-register.tsx              |       0 |        0 |       0 |       0 | 3-110                                   
+  song-request-queue.tsx                   |       0 |        0 |       0 |       0 | 3-314                                   
+  spotify-connect-button.tsx               |       0 |        0 |       0 |       0 | 8-34                                    
+  station-analytics.tsx                    |       0 |        0 |       0 |       0 | 3-92                                    
+  station-card.tsx                         |       0 |        0 |       0 |       0 | 3-69                                    
+  station-chat.tsx                         |       0 |        0 |       0 |       0 | 3-207                                   
+  track-comments.tsx                       |       0 |        0 |       0 |       0 | 3-195                                   
+  track-reactions.tsx                      |       0 |        0 |       0 |       0 | 3-175                                   
+  track-search.tsx                         |       0 |        0 |       0 |       0 | 8-128                                   
+  track-selection-modal.tsx                |       0 |        0 |       0 |       0 | 3-179                                   
+  track-voting-controls.tsx                |       0 |        0 |       0 |       0 | 1-173                                   
+  vinyl-broadcast.tsx                      |       0 |        0 |       0 |       0 | 3-242                                   
+ src/components/accessibility              |       0 |        0 |       0 |       0 |                                         
+  accessible-icon.tsx                      |       0 |        0 |       0 |       0 | 19-26                                   
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-8                                     
+  visually-hidden.tsx                      |       0 |        0 |       0 |       0 | 15-20                                   
+ src/components/analytics                  |       0 |        0 |       0 |       0 |                                         
+  analytics-dashboard.tsx                  |       0 |        0 |       0 |       0 | 3-94                                    
+  genre-distribution-chart.tsx             |       0 |        0 |       0 |       0 | 3-106                                   
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-11                                    
+  listening-stats-card.tsx                 |       0 |        0 |       0 |       0 | 3-91                                    
+  listening-trends-chart.tsx               |       0 |        0 |       0 |       0 | 3-75                                    
+  top-artists-list.tsx                     |       0 |        0 |       0 |       0 | 3-114                                   
+ src/components/examples                   |       0 |        0 |       0 |       0 |                                         
+  toast-examples.tsx                       |       0 |        0 |       0 |       0 | 3-164                                   
+ src/components/landing                    |       0 |        0 |       0 |       0 |                                         
+  bento-grid.tsx                           |       0 |      100 |       0 |       0 | 3-104                                   
+  hero.tsx                                 |       0 |        0 |       0 |       0 | 3-109                                   
+  landing-page.tsx                         |       0 |      100 |       0 |       0 | 3-7                                     
+ src/components/notifications              |       0 |        0 |       0 |       0 |                                         
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-10                                    
+  notification-bell.tsx                    |       0 |        0 |       0 |       0 | 4-15                                    
+  notification-item.tsx                    |       0 |        0 |       0 |       0 | 3-60                                    
+  notification-panel.tsx                   |       0 |        0 |       0 |       0 | 3-99                                    
+  notification-settings.tsx                |       0 |        0 |       0 |       0 | 3-324                                   
+ src/components/onboarding                 |       0 |        0 |       0 |       0 |                                         
+  genre-selection-step.tsx                 |       0 |        0 |       0 |       0 | 3-66                                    
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-11                                    
+  onboarding-flow.tsx                      |       0 |        0 |       0 |       0 | 4-52                                    
+  profile-setup-step.tsx                   |       0 |        0 |       0 |       0 | 3-91                                    
+  spotify-connect-step.tsx                 |       0 |        0 |       0 |       0 | 3-31                                    
+  welcome-step.tsx                         |       0 |      100 |       0 |       0 | 3-11                                    
+ src/components/profile                    |       0 |        0 |       0 |       0 |                                         
+  activity-feed.tsx                        |       0 |        0 |       0 |       0 | 3-230                                   
+  follow-button.tsx                        |       0 |        0 |       0 |       0 | 4-37                                    
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-11                                    
+  profile-card.tsx                         |       0 |        0 |       0 |       0 | 3-111                                   
+  profile-page.tsx                         |       0 |        0 |       0 |       0 | 3-416                                   
+  user-badges.tsx                          |       0 |        0 |       0 |       0 | 3-54                                    
+ src/components/ui                         |       0 |        0 |       0 |       0 |                                         
+  button.tsx                               |       0 |        0 |       0 |       0 | 3-94                                    
+  dropdown-menu.tsx                        |       0 |        0 |       0 |       0 | 3-198                                   
+  empty-state.tsx                          |       0 |        0 |       0 |       0 | 4-89                                    
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-152                                   
+  loading-state.tsx                        |       0 |        0 |       0 |       0 | 3-172                                   
+  magnetic-button.tsx                      |       0 |        0 |       0 |       0 | 3-43                                    
+  skeleton.tsx                             |       0 |      100 |       0 |       0 | 1-11                                    
+ src/components/ui/skeletons               |       0 |        0 |       0 |       0 |                                         
+  player-skeleton.tsx                      |       0 |      100 |       0 |       0 | 3-10                                    
+  playlist-skeleton.tsx                    |       0 |        0 |       0 |       0 | 3-95                                    
+  station-card-skeleton.tsx                |       0 |        0 |       0 |       0 | 3-52                                    
+ src/hooks                                 |       0 |        0 |       0 |       0 |                                         
+  use-async.ts                             |       0 |        0 |       0 |       0 | 3-118                                   
+  use-fetch.ts                             |       0 |        0 |       0 |       0 | 1-109                                   
+  use-keyboard-shortcuts.ts                |       0 |        0 |       0 |       0 | 3-89                                    
+  use-radio.ts                             |       0 |        0 |       0 |       0 | 1-143                                   
+  use-validation.ts                        |       0 |        0 |       0 |       0 | 6-197                                   
+ src/hooks/queries                         |       0 |        0 |       0 |       0 |                                         
+  use-analytics.ts                         |       0 |        0 |       0 |       0 | 1-161                                   
+  use-notifications.ts                     |       0 |        0 |       0 |       0 | 1-247                                   
+ src/lib                                   |    2.75 |     9.03 |    1.95 |     2.9 |                                         
+  RadioSyncEngine.ts                       |       0 |        0 |       0 |       0 | 7-199                                   
+  auth-refresh.ts                          |       0 |        0 |       0 |       0 | 7-252                                   
+  cache.ts                                 |       0 |        0 |       0 |       0 | 6-255                                   
+  env.ts                                   |       0 |        0 |       0 |       0 | 1-74                                    
+  error-handler.ts                         |   54.54 |    42.85 |   33.33 |   54.54 | 27,40-41,56-72                          
+  error-messages.ts                        |   53.84 |    71.87 |      50 |      56 | 113-227,240,242,244,246,248,250,252,254 
+  feature-flags.ts                         |       0 |        0 |       0 |       0 | 30-220                                  
+  input-validation.ts                      |       0 |        0 |       0 |       0 | 6-349                                   
+  logger.ts                                |       0 |        0 |       0 |       0 | 1-114                                   
+  optimistic-updates.ts                    |       0 |        0 |       0 |       0 | 6-191                                   
+  query-client.ts                          |       0 |        0 |       0 |       0 | 1-99                                    
+  radio-station.tsx                        |       0 |        0 |       0 |       0 | 3-166                                   
+  rate-limit.ts                            |       0 |        0 |       0 |       0 | 11-72                                   
+  redis-rate-limit.ts                      |       0 |        0 |       0 |       0 | 7-260                                   
+  spotify-api.ts                           |       0 |        0 |       0 |       0 | 6-229                                   
+  spotify-sdk.tsx                          |       0 |        0 |       0 |       0 | 3-121                                   
+  supabase.ts                              |       0 |        0 |       0 |       0 | 1-39                                    
+  toast-utils.ts                           |       0 |        0 |       0 |       0 | 1-217                                   
+  utils.ts                                 |       0 |      100 |       0 |       0 | 1-5                                     
+  websocket.tsx                            |       0 |        0 |       0 |       0 | 3-156                                   
+ src/lib/accessibility                     |       0 |        0 |       0 |       0 |                                         
+  aria-helpers.ts                          |       0 |        0 |       0 |       0 | 10-190                                  
+  color-contrast.ts                        |       0 |        0 |       0 |       0 | 11-169                                  
+  focus-trap.tsx                           |       0 |        0 |       0 |       0 | 3-91                                    
+  index.ts                                 |       0 |      100 |     100 |       0 | 8-43                                    
+  keyboard-shortcuts.tsx                   |       0 |        0 |       0 |       0 | 3-110                                   
+  live-region.tsx                          |       0 |        0 |       0 |       0 | 3-63                                    
+  skip-links.tsx                           |       0 |        0 |       0 |       0 | 19-39                                   
+ src/lib/api/services                      |       0 |      100 |       0 |       0 |                                         
+  analytics.ts                             |       0 |      100 |       0 |       0 | 1-163                                   
+  notifications.ts                         |       0 |      100 |       0 |       0 | 1-119                                   
+ src/lib/notifications                     |       0 |        0 |       0 |       0 |                                         
+  push-manager.ts                          |       0 |        0 |       0 |       0 | 10-181                                  
+ src/middleware                            |       0 |        0 |       0 |       0 |                                         
+  rate-limit.ts                            |       0 |        0 |       0 |       0 | 6-105                                   
+ src/stores                                |       0 |        0 |       0 |       0 |                                         
+  notification-store.ts                    |       0 |        0 |       0 |       0 | 1-159                                   
+  onboarding-store.ts                      |       0 |        0 |       0 |       0 | 1-183                                   
+  social-store.ts                          |       0 |        0 |       0 |       0 | 1-142                                   
+ src/types                                 |       0 |        0 |       0 |       0 |                                         
+  websocket.ts                             |       0 |        0 |       0 |       0 | 246-271                                 
+-------------------------------------------|---------|----------|---------|---------|-----------------------------------------
+Jest: "global" coverage threshold for statements (70%) not met: 0.57%
+Jest: "global" coverage threshold for branches (70%) not met: 1.59%
+Jest: "global" coverage threshold for lines (70%) not met: 0.62%
+Jest: "global" coverage threshold for functions (70%) not met: 0.34%
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 16 passed, 17 total
+Snapshots:   0 total
+Time:        5.031 s
+Ran all test suites matching src/lib/__tests__/error-handler.test.ts.

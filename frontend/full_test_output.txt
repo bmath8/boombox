@@ -1,0 +1,1006 @@
+
+> frontend@0.1.0 test
+> jest
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL src/app/api/health/__tests__/route.test.ts
+  ΓùÅ Health Check API Route ΓÇ║ Successful Health Checks ΓÇ║ should return healthy status when database is accessible
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:49:39)
+
+  ΓùÅ Health Check API Route ΓÇ║ Successful Health Checks ΓÇ║ should include response time in database check
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:70:39)
+
+  ΓùÅ Health Check API Route ΓÇ║ Successful Health Checks ΓÇ║ should include application version and environment
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:89:39)
+
+  ΓùÅ Health Check API Route ΓÇ║ Unhealthy States ΓÇ║ should return unhealthy status when database is down
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:108:39)
+
+  ΓùÅ Health Check API Route ΓÇ║ Unhealthy States ΓÇ║ should handle unexpected errors gracefully
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:122:39)
+
+  ΓùÅ Health Check API Route ΓÇ║ Unhealthy States ΓÇ║ should handle non-Error exceptions
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:135:39)
+
+  ΓùÅ Health Check API Route ΓÇ║ Timestamp Validation ΓÇ║ should include valid ISO timestamp
+
+    TypeError: Cannot read properties of undefined (reading 'ip')
+
+      35 |     return (request: NextRequest): NextResponse | null => {
+      36 |         // Get client identifier (IP address)
+    > 37 |         const key = request.ip ||
+         |                             ^
+      38 |             request.headers.get('x-forwarded-for') ||
+      39 |             request.headers.get('x-real-ip') ||
+      40 |             'unknown';
+
+      at ip (src/middleware/rate-limit.ts:37:29)
+      at GET (src/app/api/health/route.ts:15:47)
+      at Object.<anonymous> (src/app/api/health/__tests__/route.test.ts:155:39)
+
+PASS src/components/ui/__tests__/loading-state.test.tsx
+PASS src/lib/__tests__/error-handler.test.ts
+PASS src/__tests__/env.test.ts
+  ΓùÅ Console
+
+    console.error
+      Γ¥î Environment variable validation failed:
+
+      56 |
+      57 |     if (!parsed.success) {
+    > 58 |         console.error('Γ¥î Environment variable validation failed:');
+         |                 ^
+      59 |         console.error(parsed.error.format());
+      60 |
+      61 |         throw new Error(
+
+      at error (src/lib/env.ts:58:17)
+      at src/__tests__/env.test.ts:32:33
+      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (src/__tests__/env.test.ts:32:37)
+
+    console.error
+      {
+        _errors: [],
+        NEXT_PUBLIC_SUPABASE_URL: { _errors: [ 'NEXT_PUBLIC_SUPABASE_URL must be a valid URL' ] }
+      }
+
+      57 |     if (!parsed.success) {
+      58 |         console.error('Γ¥î Environment variable validation failed:');
+    > 59 |         console.error(parsed.error.format());
+         |                 ^
+      60 |
+      61 |         throw new Error(
+      62 |             'Invalid environment variables. Please check your .env file.\n' +
+
+      at error (src/lib/env.ts:59:17)
+      at src/__tests__/env.test.ts:32:33
+      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (src/__tests__/env.test.ts:32:37)
+
+    console.error
+      Γ¥î Environment variable validation failed:
+
+      56 |
+      57 |     if (!parsed.success) {
+    > 58 |         console.error('Γ¥î Environment variable validation failed:');
+         |                 ^
+      59 |         console.error(parsed.error.format());
+      60 |
+      61 |         throw new Error(
+
+      at error (src/lib/env.ts:58:17)
+      at src/__tests__/env.test.ts:40:33
+      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (src/__tests__/env.test.ts:40:37)
+
+    console.error
+      {
+        _errors: [],
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: { _errors: [ 'Invalid input: expected string, received undefined' ] }
+      }
+
+      57 |     if (!parsed.success) {
+      58 |         console.error('Γ¥î Environment variable validation failed:');
+    > 59 |         console.error(parsed.error.format());
+         |                 ^
+      60 |
+      61 |         throw new Error(
+      62 |             'Invalid environment variables. Please check your .env file.\n' +
+
+      at error (src/lib/env.ts:59:17)
+      at src/__tests__/env.test.ts:40:33
+      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (src/__tests__/env.test.ts:40:37)
+
+    console.error
+      Γ¥î Environment variable validation failed:
+
+      56 |
+      57 |     if (!parsed.success) {
+    > 58 |         console.error('Γ¥î Environment variable validation failed:');
+         |                 ^
+      59 |         console.error(parsed.error.format());
+      60 |
+      61 |         throw new Error(
+
+      at error (src/lib/env.ts:58:17)
+      at src/__tests__/env.test.ts:48:33
+      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (src/__tests__/env.test.ts:48:37)
+
+    console.error
+      {
+        _errors: [],
+        NEXT_PUBLIC_WS_URL: { _errors: [ 'NEXT_PUBLIC_WS_URL must start with ws:// or wss://' ] }
+      }
+
+      57 |     if (!parsed.success) {
+      58 |         console.error('Γ¥î Environment variable validation failed:');
+    > 59 |         console.error(parsed.error.format());
+         |                 ^
+      60 |
+      61 |         throw new Error(
+      62 |             'Invalid environment variables. Please check your .env file.\n' +
+
+      at error (src/lib/env.ts:59:17)
+      at src/__tests__/env.test.ts:48:33
+      at Object.<anonymous> (node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (src/__tests__/env.test.ts:48:37)
+
+PASS src/components/__tests__/auth-form.test.tsx
+  ΓùÅ Console
+
+    console.log
+      [2025-12-04T03:13:43.998Z] [INFO] Starting authentication { isLogin: true, email: 'test@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.017Z] [INFO] Attempting login
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.022Z] [INFO] Login successful { email: 'test@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.022Z] [INFO] Auth success {
+        title: 'Login Successful!',
+        description: 'Welcome back, test@example.com',
+        details: undefined
+      }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.043Z] [INFO] Starting authentication { isLogin: true, email: 'test@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.044Z] [INFO] Attempting login
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.error
+      [2025-12-04T03:13:44.054Z] [ERROR] Login error Error: Invalid login credentials
+          at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\__tests__\auth-form.test.tsx:128:24)
+          at Promise.finally.completed (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+          at _callCircusTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+          at _runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at run (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+          at runAndTransformResultsToJestFormat (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+          at jestAdapter (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\runner.js:101:19)
+          at runTestInternal (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      45 |     error(message: string, error?: unknown) {
+      46 |         // Always log errors
+    > 47 |         console.error(...this.formatMessage('error', message, error));
+         |                 ^
+      48 |
+      49 |         // Send to Sentry in production
+      50 |         if (isProd) {
+
+      at Logger.error (src/lib/logger.ts:47:17)
+      at error (src/components/auth-form.tsx:52:28)
+
+    console.error
+      [2025-12-04T03:13:44.060Z] [ERROR] Auth exception Error: Invalid login credentials
+          at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\__tests__\auth-form.test.tsx:128:24)
+          at Promise.finally.completed (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+          at _callCircusTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+          at _runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at run (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+          at runAndTransformResultsToJestFormat (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+          at jestAdapter (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\runner.js:101:19)
+          at runTestInternal (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      45 |     error(message: string, error?: unknown) {
+      46 |         // Always log errors
+    > 47 |         console.error(...this.formatMessage('error', message, error));
+         |                 ^
+      48 |
+      49 |         // Send to Sentry in production
+      50 |         if (isProd) {
+
+      at Logger.error (src/lib/logger.ts:47:17)
+      at error (src/components/auth-form.tsx:103:20)
+
+    console.log
+      [2025-12-04T03:13:44.060Z] [INFO] Auth error {
+        title: 'Invalid Credentials',
+        description: 'The email or password you entered is incorrect.',
+        details: 'Please double-check your credentials and try again.'
+      }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.073Z] [INFO] Starting authentication { isLogin: true, email: 'test@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.074Z] [INFO] Attempting login
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.089Z] [INFO] Starting authentication { isLogin: false, email: 'newuser@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.089Z] [INFO] Attempting signup
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.092Z] [INFO] Signup response { user: { id: '123', email: 'newuser@example.com' }, session: {} }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.092Z] [INFO] Auth success {
+        title: 'Account Created!',
+        description: 'Your account has been created successfully. Redirecting...',
+        details: undefined
+      }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.110Z] [INFO] Starting authentication { isLogin: false, email: 'existing@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.111Z] [INFO] Attempting signup
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.error
+      [2025-12-04T03:13:44.119Z] [ERROR] Signup error Error: User already registered
+          at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\__tests__\auth-form.test.tsx:201:24)
+          at Promise.finally.completed (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+          at _callCircusTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+          at _runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at run (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+          at runAndTransformResultsToJestFormat (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+          at jestAdapter (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\runner.js:101:19)
+          at runTestInternal (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      45 |     error(message: string, error?: unknown) {
+      46 |         // Always log errors
+    > 47 |         console.error(...this.formatMessage('error', message, error));
+         |                 ^
+      48 |
+      49 |         // Send to Sentry in production
+      50 |         if (isProd) {
+
+      at Logger.error (src/lib/logger.ts:47:17)
+      at error (src/components/auth-form.tsx:74:28)
+
+    console.error
+      [2025-12-04T03:13:44.120Z] [ERROR] Auth exception Error: User already registered
+          at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\__tests__\auth-form.test.tsx:201:24)
+          at Promise.finally.completed (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1557:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1497:10)
+          at _callCircusTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1007:40)
+          at _runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:947:3)
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:849:7
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:862:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at _runTestsForDescribeBlock (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:857:11)
+          at run (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:761:3)
+          at runAndTransformResultsToJestFormat (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\jestAdapterInit.js:1918:21)
+          at jestAdapter (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-circus\build\runner.js:101:19)
+          at runTestInternal (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:275:16)
+          at runTest (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:343:7)
+          at Object.worker (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\jest-runner\build\testWorker.js:497:12)
+
+      45 |     error(message: string, error?: unknown) {
+      46 |         // Always log errors
+    > 47 |         console.error(...this.formatMessage('error', message, error));
+         |                 ^
+      48 |
+      49 |         // Send to Sentry in production
+      50 |         if (isProd) {
+
+      at Logger.error (src/lib/logger.ts:47:17)
+      at error (src/components/auth-form.tsx:103:20)
+
+    console.log
+      [2025-12-04T03:13:44.120Z] [INFO] Auth error {
+        title: 'Account Exists',
+        description: 'An account with this email already exists.',
+        details: 'Try logging in instead, or use the "Forgot Password" option.'
+      }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.146Z] [INFO] Starting authentication { isLogin: true, email: 'test@example.com' }
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:44.147Z] [INFO] Attempting login
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+PASS src/__tests__/auth.test.ts
+PASS src/__tests__/playlist-flow.test.ts
+PASS src/components/__tests__/track-search.test.tsx
+  ΓùÅ Console
+
+    console.error
+      [Spotify Search] Error: Error: Search failed
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\track-search.tsx:42:31
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\track-search.tsx:33:13
+
+      18 |  */
+      19 | export function handleError(error: unknown, context: string, showToast: boolean = true) {
+    > 20 |     console.error(`[${context}] Error:`, error);
+         |             ^
+      21 |
+      22 |     // Parse error to get code and config
+      23 |     const { code, config } = parseError(error);
+
+      at error (src/lib/error-handler.ts:20:13)
+      at src/components/track-search.tsx:50:24
+
+PASS src/__tests__/radio-stations.test.ts
+PASS src/lib/__tests__/rate-limit.test.ts
+FAIL src/app/api/auth/callback/spotify/__tests__/route.test.ts
+  ΓùÅ Test suite failed to run
+
+    ReferenceError: Request is not defined
+
+    
+
+      at Object.Request (node_modules/next/src/server/web/spec-extension/request.ts:14:34)
+      at Object.<anonymous> (node_modules/next/server.js:2:16)
+      at Object.<anonymous> (src/app/api/auth/callback/spotify/route.ts:658:27)
+      at Object.<anonymous> (src/app/api/auth/callback/spotify/__tests__/route.test.ts:12:16)
+
+PASS src/__tests__/websocket-types.test.ts
+PASS src/lib/__tests__/spotify-api.test.ts
+PASS src/__tests__/supabase.test.ts
+PASS src/components/__tests__/collaborative-playlist.test.tsx
+PASS src/components/__tests__/error-boundary.test.tsx
+PASS src/components/__tests__/station-chat.test.tsx
+  ΓùÅ Console
+
+    console.error
+      An update to StationChat inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+      94 |             if (error) throw error;
+      95 |
+    > 96 |             setMessages(data as unknown as StationMessage[]);
+         |             ^
+      97 |             setTimeout(scrollToBottom, 100);
+      98 |         } catch (error) {
+      99 |             handleError(error, 'FetchMessages', false);
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setMessages (src/components/station-chat.tsx:96:13)
+
+    console.error
+      An update to StationChat inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+       99 |             handleError(error, 'FetchMessages', false);
+      100 |         } finally {
+    > 101 |             setLoading(false);
+          |             ^
+      102 |         }
+      103 |     };
+      104 |
+
+      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19
+      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)
+      at dispatchSetStateInternal (node_modules/react-dom/cjs/react-dom-client.development.js:9170:13)
+      at dispatchSetState (node_modules/react-dom/cjs/react-dom-client.development.js:9127:7)
+      at setLoading (src/components/station-chat.tsx:101:13)
+
+PASS src/lib/__tests__/cache.test.ts
+  ΓùÅ Console
+
+    console.log
+      [2025-12-04T03:13:45.024Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.039Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.040Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.040Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.042Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.050Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.203Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.208Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.209Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.210Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.210Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.211Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+    console.log
+      [2025-12-04T03:13:45.211Z] [INFO] Cache cleared
+
+      at Logger.log [as info] (src/lib/logger.ts:21:17)
+
+PASS src/components/__tests__/dj-queue-panel.test.tsx
+FAIL src/lib/__tests__/RadioSyncEngine.test.ts (35.671 s)
+  ΓùÅ RadioSyncEngine ΓÇ║ Time Calibration ΓÇ║ should calibrate server time with multiple samples
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      54 |
+      55 |     describe('Time Calibration', () => {
+    > 56 |         it('should calibrate server time with multiple samples', async () => {
+         |         ^
+      57 |             const serverTime = 1000000;
+      58 |             (global.fetch as jest.Mock).mockResolvedValue({
+      59 |                 json: async () => ({ timestamp: serverTime }),
+
+      at it (src/lib/__tests__/RadioSyncEngine.test.ts:56:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:55:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+  ΓùÅ RadioSyncEngine ΓÇ║ Time Calibration ΓÇ║ should use median offset to filter outliers
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      74 |         });
+      75 |
+    > 76 |         it('should use median offset to filter outliers', async () => {
+         |         ^
+      77 |             const offsets = [100, 105, 102, 500, 103]; // 500 is outlier
+      78 |             let callCount = 0;
+      79 |
+
+      at it (src/lib/__tests__/RadioSyncEngine.test.ts:76:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:55:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+  ΓùÅ RadioSyncEngine ΓÇ║ Position Synchronization ΓÇ║ should sync to broadcaster position when drift exceeds 500ms
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      113 |
+      114 |     describe('Position Synchronization', () => {
+    > 115 |         beforeEach(async () => {
+          |         ^
+      116 |             // Pre-calibrate for sync tests
+      117 |             (global.fetch as jest.Mock).mockResolvedValue({
+      118 |                 json: async () => ({ timestamp: Date.now() }),
+
+      at beforeEach (src/lib/__tests__/RadioSyncEngine.test.ts:115:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:114:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+  ΓùÅ RadioSyncEngine ΓÇ║ Position Synchronization ΓÇ║ should not sync when drift is less than 500ms
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      113 |
+      114 |     describe('Position Synchronization', () => {
+    > 115 |         beforeEach(async () => {
+          |         ^
+      116 |             // Pre-calibrate for sync tests
+      117 |             (global.fetch as jest.Mock).mockResolvedValue({
+      118 |                 json: async () => ({ timestamp: Date.now() }),
+
+      at beforeEach (src/lib/__tests__/RadioSyncEngine.test.ts:115:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:114:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+  ΓùÅ RadioSyncEngine ΓÇ║ Position Synchronization ΓÇ║ should switch tracks when playing wrong track
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      113 |
+      114 |     describe('Position Synchronization', () => {
+    > 115 |         beforeEach(async () => {
+          |         ^
+      116 |             // Pre-calibrate for sync tests
+      117 |             (global.fetch as jest.Mock).mockResolvedValue({
+      118 |                 json: async () => ({ timestamp: Date.now() }),
+
+      at beforeEach (src/lib/__tests__/RadioSyncEngine.test.ts:115:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:114:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+  ΓùÅ RadioSyncEngine ΓÇ║ Position Synchronization ΓÇ║ should handle player not ready gracefully
+
+    thrown: "Exceeded timeout of 5000 ms for a hook.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      113 |
+      114 |     describe('Position Synchronization', () => {
+    > 115 |         beforeEach(async () => {
+          |         ^
+      116 |             // Pre-calibrate for sync tests
+      117 |             (global.fetch as jest.Mock).mockResolvedValue({
+      118 |                 json: async () => ({ timestamp: Date.now() }),
+
+      at beforeEach (src/lib/__tests__/RadioSyncEngine.test.ts:115:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:114:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+  ΓùÅ RadioSyncEngine ΓÇ║ Event Handlers ΓÇ║ should handle position update from broadcaster
+
+    thrown: "Exceeded timeout of 5000 ms for a test.
+    Add a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout."
+
+      303 |
+      304 |     describe('Event Handlers', () => {
+    > 305 |         it('should handle position update from broadcaster', async () => {
+          |         ^
+      306 |             const data = {
+      307 |                 trackId: 'track-123',
+      308 |                 positionMs: 10000,
+
+      at it (src/lib/__tests__/RadioSyncEngine.test.ts:305:9)
+      at describe (src/lib/__tests__/RadioSyncEngine.test.ts:304:5)
+      at Object.describe (src/lib/__tests__/RadioSyncEngine.test.ts:21:1)
+
+Failed to collect coverage from C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\playlist-track-card.tsx
+ERROR:   x Expression expected
+    ,-[C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\playlist-track-card.tsx:11:1]
+  8 | vote_count: number;
+  9 | position: number;
+ 10 | play_count: number;
+ 11 | user_vote ?: 'up' | 'down' | null;
+    :            ^
+ 12 | };
+ 13 | 
+ 13 | type PlaylistTrackCardProps = {
+    `----
+
+
+Caused by:
+    Syntax Error
+STACK: Error:   x Expression expected
+    ,-[C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\src\components\playlist-track-card.tsx:11:1]
+  8 | vote_count: number;
+  9 | position: number;
+ 10 | play_count: number;
+ 11 | user_vote ?: 'up' | 'down' | null;
+    :            ^
+ 12 | };
+ 13 | 
+ 13 | type PlaylistTrackCardProps = {
+    `----
+
+
+Caused by:
+    Syntax Error
+    at Object.transformSync (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\next\dist\build\swc\index.js:1121:33)
+    at transformSync (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\next\dist\build\swc\index.js:1212:21)
+    at process (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\next\dist\build\swc\jest-transformer.js:65:45)
+    at ScriptTransformer.transformSourceAsync (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\@jest\transform\build\index.js:462:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async generateEmptyCoverage (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.3\frontend\node_modules\@jest\reporters\build\CoverageWorker.js:92:9)
+-------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+File                                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                               
+-------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+All files                                  |   12.41 |     11.1 |    9.44 |   13.02 |                                                 
+ src                                       |       0 |        0 |       0 |       0 |                                                 
+  middleware.ts                            |       0 |        0 |       0 |       0 | 1-84                                            
+  test-utils.tsx                           |       0 |      100 |       0 |       0 | 1-51                                            
+ src/app/api/auth/callback/spotify         |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-87                                            
+ src/app/api/health                        |   38.88 |        0 |     100 |   43.75 |                                                 
+  route.ts                                 |   38.88 |        0 |     100 |   43.75 | 16-53                                           
+ src/app/api/health/advanced               |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-283                                           
+ src/app/api/search                        |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 1-103                                           
+ src/app/api/spotify/playlists             |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-61                                            
+ src/app/api/spotify/playlists/[id]/tracks |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-54                                            
+ src/app/api/spotify/search                |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-78                                            
+ src/app/auth/auth-code-error              |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-73                                            
+ src/app/auth/callback                     |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 1-48                                            
+ src/app/login                             |       0 |      100 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |      100 |       0 |       0 | 1-3                                             
+ src/app/offline                           |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-26                                            
+ src/app/playlists                         |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-240                                           
+ src/app/playlists/[id]                    |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-9                                             
+ src/app/profile                           |       0 |      100 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-11                                            
+ src/app/radio                             |       0 |      100 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-5                                             
+ src/app/radio/[id]                        |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-10                                            
+ src/app/search                            |       0 |      100 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-63                                            
+ src/app/test/spotify                      |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 8-114                                           
+ src/components                            |   16.51 |    13.95 |   14.55 |   17.41 |                                                 
+  app-header.tsx                           |       0 |      100 |       0 |       0 | 3-12                                            
+  auth-form.tsx                            |      71 |       68 |   66.66 |   71.71 | 61,82,89-97,118-120,125-128,139-173,189         
+  auth-initializer.tsx                     |       0 |      100 |       0 |       0 | 8-26                                            
+  boombox-login.tsx                        |       0 |        0 |       0 |       0 | 3-230                                           
+  collaborative-playlist-creator.tsx       |       0 |        0 |       0 |       0 | 3-217                                           
+  collaborative-playlist-view.tsx          |       0 |        0 |       0 |       0 | 3-369                                           
+  collaborative-playlist.tsx               |      90 |    82.35 |     100 |    90.9 | 49-52,78                                        
+  curator-stats.tsx                        |       0 |        0 |       0 |       0 | 3-52                                            
+  dashboard-view.tsx                       |       0 |        0 |       0 |       0 | 3-131                                           
+  discovery-feed.tsx                       |       0 |        0 |       0 |       0 | 3-122                                           
+  dj-profile-card.tsx                      |       0 |        0 |       0 |       0 | 3-234                                           
+  dj-queue-panel.tsx                       |   55.95 |    55.81 |   41.66 |   61.64 | 101,133-145,151-164,169-180,185-189,276,402-406 
+  error-boundary.tsx                       |   71.42 |       80 |   57.14 |   69.23 | 47,54,110-114                                   
+  keyboard-shortcuts-modal.tsx             |       0 |        0 |       0 |       0 | 3-122                                           
+  keyboard-shortcuts-provider.tsx          |       0 |      100 |       0 |       0 | 3-15                                            
+  listener-wall.tsx                        |       0 |        0 |       0 |       0 | 3-154                                           
+  live-feed.tsx                            |       0 |        0 |       0 |       0 | 3-117                                           
+  mobile-nav.tsx                           |       0 |        0 |       0 |       0 | 3-47                                            
+  notification-center.tsx                  |       0 |        0 |       0 |       0 | 3-253                                           
+  player.tsx                               |       0 |        0 |       0 |       0 | 3-63                                            
+  playlist-challenges.tsx                  |       0 |        0 |       0 |       0 | 3-215                                           
+  playlist-import.tsx                      |       0 |        0 |       0 |       0 | 8-164                                           
+  playlist-insights.tsx                    |       0 |        0 |       0 |       0 | 3-94                                            
+  queue-settings.tsx                       |      50 |    55.55 |      20 |      50 | 62-97                                           
+  reaction-overlay.tsx                     |       0 |        0 |       0 |       0 | 3-96                                            
+  scheduled-shows.tsx                      |       0 |        0 |       0 |       0 | 3-191                                           
+  search-bar.tsx                           |       0 |        0 |       0 |       0 | 3-254                                           
+  service-worker-register.tsx              |       0 |        0 |       0 |       0 | 3-110                                           
+  song-request-queue.tsx                   |       0 |        0 |       0 |       0 | 3-314                                           
+  spotify-connect-button.tsx               |       0 |        0 |       0 |       0 | 8-34                                            
+  station-analytics.tsx                    |       0 |        0 |       0 |       0 | 3-92                                            
+  station-card.tsx                         |       0 |        0 |       0 |       0 | 3-69                                            
+  station-chat.tsx                         |   80.64 |    79.16 |   76.92 |   88.88 | 36-50,143                                       
+  track-comments.tsx                       |       0 |        0 |       0 |       0 | 3-195                                           
+  track-reactions.tsx                      |       0 |        0 |       0 |       0 | 3-175                                           
+  track-search.tsx                         |   91.66 |    93.75 |      90 |   94.28 | 27-28                                           
+  track-selection-modal.tsx                |   28.57 |        4 |   11.11 |   29.54 | 35-59,64,68-88,137-179                          
+  track-voting-controls.tsx                |       0 |        0 |       0 |       0 | 1-173                                           
+  vinyl-broadcast.tsx                      |       0 |        0 |       0 |       0 | 3-242                                           
+ src/components/accessibility              |       0 |        0 |       0 |       0 |                                                 
+  accessible-icon.tsx                      |       0 |        0 |       0 |       0 | 19-26                                           
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-8                                             
+  visually-hidden.tsx                      |       0 |        0 |       0 |       0 | 15-20                                           
+ src/components/analytics                  |       0 |        0 |       0 |       0 |                                                 
+  analytics-dashboard.tsx                  |       0 |        0 |       0 |       0 | 3-94                                            
+  genre-distribution-chart.tsx             |       0 |        0 |       0 |       0 | 3-106                                           
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-11                                            
+  listening-stats-card.tsx                 |       0 |        0 |       0 |       0 | 3-91                                            
+  listening-trends-chart.tsx               |       0 |        0 |       0 |       0 | 3-75                                            
+  top-artists-list.tsx                     |       0 |        0 |       0 |       0 | 3-114                                           
+ src/components/examples                   |       0 |        0 |       0 |       0 |                                                 
+  toast-examples.tsx                       |       0 |        0 |       0 |       0 | 3-164                                           
+ src/components/landing                    |       0 |        0 |       0 |       0 |                                                 
+  bento-grid.tsx                           |       0 |      100 |       0 |       0 | 3-104                                           
+  hero.tsx                                 |       0 |        0 |       0 |       0 | 3-109                                           
+  landing-page.tsx                         |       0 |      100 |       0 |       0 | 3-7                                             
+ src/components/notifications              |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-10                                            
+  notification-bell.tsx                    |       0 |        0 |       0 |       0 | 4-15                                            
+  notification-item.tsx                    |       0 |        0 |       0 |       0 | 3-60                                            
+  notification-panel.tsx                   |       0 |        0 |       0 |       0 | 3-99                                            
+  notification-settings.tsx                |       0 |        0 |       0 |       0 | 3-324                                           
+ src/components/onboarding                 |       0 |        0 |       0 |       0 |                                                 
+  genre-selection-step.tsx                 |       0 |        0 |       0 |       0 | 3-66                                            
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-11                                            
+  onboarding-flow.tsx                      |       0 |        0 |       0 |       0 | 4-52                                            
+  profile-setup-step.tsx                   |       0 |        0 |       0 |       0 | 3-91                                            
+  spotify-connect-step.tsx                 |       0 |        0 |       0 |       0 | 3-31                                            
+  welcome-step.tsx                         |       0 |      100 |       0 |       0 | 3-11                                            
+ src/components/profile                    |       0 |        0 |       0 |       0 |                                                 
+  activity-feed.tsx                        |       0 |        0 |       0 |       0 | 3-230                                           
+  follow-button.tsx                        |       0 |        0 |       0 |       0 | 4-37                                            
+  index.ts                                 |       0 |      100 |     100 |       0 | 7-11                                            
+  profile-card.tsx                         |       0 |        0 |       0 |       0 | 3-111                                           
+  profile-page.tsx                         |       0 |        0 |       0 |       0 | 3-416                                           
+  user-badges.tsx                          |       0 |        0 |       0 |       0 | 3-54                                            
+ src/components/recommendations            |       0 |        0 |       0 |       0 |                                                 
+  index.ts                                 |       0 |      100 |     100 |       0 | 7                                               
+  recommendations-dashboard.tsx            |       0 |        0 |       0 |       0 | 3-141                                           
+ src/components/ui                         |   31.31 |    21.15 |    4.54 |   31.63 |                                                 
+  button.tsx                               |       0 |        0 |       0 |       0 | 3-94                                            
+  dropdown-menu.tsx                        |   71.42 |    14.28 |       0 |   71.42 | 187-189,192-198                                 
+  empty-state.tsx                          |       0 |        0 |       0 |       0 | 4-89                                            
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-152                                           
+  loading-state.tsx                        |   46.15 |    58.82 |   16.66 |   46.15 | 120-172                                         
+  magnetic-button.tsx                      |       0 |        0 |       0 |       0 | 3-43                                            
+  skeleton.tsx                             |       0 |      100 |       0 |       0 | 1-11                                            
+ src/components/ui/skeletons               |       0 |        0 |       0 |       0 |                                                 
+  player-skeleton.tsx                      |       0 |      100 |       0 |       0 | 3-10                                            
+  playlist-skeleton.tsx                    |       0 |        0 |       0 |       0 | 3-95                                            
+  station-card-skeleton.tsx                |       0 |        0 |       0 |       0 | 3-52                                            
+ src/hooks                                 |   15.07 |      9.3 |   11.76 |   15.57 |                                                 
+  use-async.ts                             |       0 |        0 |       0 |       0 | 3-118                                           
+  use-fetch.ts                             |   61.29 |    36.36 |      80 |   63.33 | 37-50,69-71,91-105                              
+  use-keyboard-shortcuts.ts                |       0 |        0 |       0 |       0 | 3-89                                            
+  use-radio.ts                             |       0 |        0 |       0 |       0 | 1-143                                           
+  use-validation.ts                        |       0 |        0 |       0 |       0 | 6-197                                           
+ src/hooks/queries                         |       0 |        0 |       0 |       0 |                                                 
+  use-analytics.ts                         |       0 |        0 |       0 |       0 | 1-161                                           
+  use-notifications.ts                     |       0 |        0 |       0 |       0 | 1-247                                           
+  use-recommendations.ts                   |       0 |        0 |       0 |       0 | 1-266                                           
+ src/lib                                   |   23.38 |    23.72 |   24.39 |   23.79 |                                                 
+  RadioSyncEngine.ts                       |   65.07 |    52.63 |   86.66 |   65.51 | 49-53,69,80-106                                 
+  auth-refresh.ts                          |       0 |        0 |       0 |       0 | 7-252                                           
+  cache.ts                                 |    72.5 |    53.57 |   73.68 |   73.07 | 29,54-55,160-201,236-237                        
+  env.ts                                   |     100 |      100 |     100 |     100 |                                                 
+  error-handler.ts                         |   54.54 |    42.85 |   33.33 |   54.54 | 27,40-41,56-72                                  
+  error-messages.ts                        |   59.25 |       75 |      50 |   61.53 | 113-227,242,246,248,250,252,254,256             
+  feature-flags.ts                         |       0 |        0 |       0 |       0 | 30-220                                          
+  input-validation.ts                      |       0 |        0 |       0 |       0 | 6-349                                           
+  logger.ts                                |   54.83 |    27.77 |      50 |   53.33 | 25-38,51-60,72,87-109                           
+  optimistic-updates.ts                    |       0 |        0 |       0 |       0 | 6-191                                           
+  query-client.ts                          |       0 |        0 |       0 |       0 | 1-99                                            
+  radio-station.tsx                        |       0 |        0 |       0 |       0 | 3-166                                           
+  rate-limit.ts                            |      80 |      100 |      80 |   86.95 | 66-72                                           
+  redis-rate-limit.ts                      |       0 |        0 |       0 |       0 | 7-260                                           
+  spotify-api.ts                           |   63.04 |    34.61 |   66.66 |   62.22 | 88,112,142,152-166,191-229                      
+  spotify-sdk.tsx                          |       0 |        0 |       0 |       0 | 3-121                                           
+  supabase.ts                              |     100 |      100 |     100 |     100 |                                                 
+  toast-utils.ts                           |       0 |        0 |       0 |       0 | 1-217                                           
+  utils.ts                                 |     100 |      100 |     100 |     100 |                                                 
+  websocket.tsx                            |       0 |        0 |       0 |       0 | 3-156                                           
+ src/lib/accessibility                     |       0 |        0 |       0 |       0 |                                                 
+  aria-helpers.ts                          |       0 |        0 |       0 |       0 | 10-190                                          
+  color-contrast.ts                        |       0 |        0 |       0 |       0 | 11-169                                          
+  focus-trap.tsx                           |       0 |        0 |       0 |       0 | 3-91                                            
+  index.ts                                 |       0 |      100 |     100 |       0 | 8-43                                            
+  keyboard-shortcuts.tsx                   |       0 |        0 |       0 |       0 | 3-110                                           
+  live-region.tsx                          |       0 |        0 |       0 |       0 | 3-63                                            
+  skip-links.tsx                           |       0 |        0 |       0 |       0 | 19-39                                           
+ src/lib/api/services                      |       0 |        0 |       0 |       0 |                                                 
+  analytics.ts                             |       0 |      100 |       0 |       0 | 1-163                                           
+  notifications.ts                         |       0 |      100 |       0 |       0 | 1-119                                           
+  recommendations.ts                       |       0 |        0 |       0 |       0 | 1-216                                           
+ src/lib/notifications                     |       0 |        0 |       0 |       0 |                                                 
+  push-manager.ts                          |       0 |        0 |       0 |       0 | 10-181                                          
+ src/middleware                            |    30.3 |     8.33 |   66.66 |   31.03 |                                                 
+  rate-limit.ts                            |    30.3 |     8.33 |   66.66 |   31.03 | 18-34,42-85                                     
+ src/stores                                |       0 |        0 |       0 |       0 |                                                 
+  notification-store.ts                    |       0 |        0 |       0 |       0 | 1-159                                           
+  onboarding-store.ts                      |       0 |        0 |       0 |       0 | 1-183                                           
+  social-store.ts                          |       0 |        0 |       0 |       0 | 1-142                                           
+ src/types                                 |     100 |      100 |     100 |     100 |                                                 
+  websocket.ts                             |     100 |      100 |     100 |     100 |                                                 
+-------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+Jest: "global" coverage threshold for statements (70%) not met: 12.41%
+Jest: "global" coverage threshold for branches (70%) not met: 11.1%
+Jest: "global" coverage threshold for lines (70%) not met: 13.02%
+Jest: "global" coverage threshold for functions (70%) not met: 9.44%
+Test Suites: 3 failed, 17 passed, 20 total
+Tests:       14 failed, 1 skipped, 171 passed, 186 total
+Snapshots:   0 total
+Time:        44.591 s
+Ran all test suites.

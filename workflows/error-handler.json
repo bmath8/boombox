@@ -1,0 +1,216 @@
+{
+    "name": "Global Error Handler",
+    "nodes": [
+        {
+            "parameters": {},
+            "name": "Error Trigger",
+            "type": "n8n-nodes-base.errorTrigger",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "id": "error-trigger"
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{$json.error.message}}",
+                            "operation": "contains",
+                            "value2": "rate limit"
+                        },
+                        {
+                            "value1": "={{$json.error.message}}",
+                            "operation": "contains",
+                            "value2": "429"
+                        },
+                        {
+                            "value1": "={{$json.error.message}}",
+                            "operation": "contains",
+                            "value2": "ECONNRESET"
+                        },
+                        {
+                            "value1": "={{$json.error.message}}",
+                            "operation": "contains",
+                            "value2": "ETIMEDOUT"
+                        }
+                    ]
+                },
+                "combineOperation": "any"
+            },
+            "name": "Is Retryable?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ],
+            "id": "is-retryable"
+        },
+        {
+            "parameters": {
+                "functionCode": "// Log error to database\nconst { Client } = require('pg');\nconst client = new Client({ connectionString: process.env.DATABASE_URL });\nawait client.connect();\n\nconst error = $input.item.json.error;\nconst workflow = $input.item.json.workflow;\n\nawait client.query(\n  `INSERT INTO error_logs (\n     workflow_id, workflow_name, node_name, error_message, \n     error_stack, execution_id, created_at\n   )\n   VALUES ($1, $2, $3, $4, $5, $6, NOW())`,\n  [\n    workflow.id,\n    workflow.name,\n    error.node?.name || 'Unknown',\n    error.message,\n    error.stack,\n    $execution.id\n  ]\n);\n\nawait client.end();\n\nreturn { json: { logged: true } };"
+            },
+            "name": "Log Error to Database",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                650,
+                300
+            ],
+            "id": "log-error"
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{$json.error.message}}",
+                            "operation": "contains",
+                            "value2": "CRITICAL"
+                        },
+                        {
+                            "value1": "={{$json.workflow.name}}",
+                            "operation": "contains",
+                            "value2": "Spotify"
+                        }
+                    ]
+                },
+                "combineOperation": "any"
+            },
+            "name": "Is Critical?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [
+                850,
+                300
+            ],
+            "id": "is-critical"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "={{$env.SLACK_WEBHOOK_URL}}",
+                "options": {},
+                "bodyParametersJson": "={\n  \"text\": \"🚨 CRITICAL ERROR in {{$json.workflow.name}}\",\n  \"blocks\": [\n    {\n      \"type\": \"section\",\n      \"text\": {\n        \"type\": \"mrkdwn\",\n        \"text\": \"*Workflow:* {{$json.workflow.name}}\\n*Node:* {{$json.error.node.name}}\\n*Error:* {{$json.error.message}}\\n*Execution ID:* {{$execution.id}}\"\n      }\n    },\n    {\n      \"type\": \"actions\",\n      \"elements\": [\n        {\n          \"type\": \"button\",\n          \"text\": {\n            \"type\": \"plain_text\",\n            \"text\": \"View in n8n\"\n          },\n          \"url\": \"{{$env.N8N_HOST}}/workflow/{{$json.workflow.id}}/executions/{{$execution.id}}\"\n        }\n      ]\n    }\n  ]\n}"
+            },
+            "name": "Send Slack Alert",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4,
+            "position": [
+                1050,
+                200
+            ],
+            "id": "send-slack-alert",
+            "continueOnFail": true
+        },
+        {
+            "parameters": {
+                "functionCode": "// Add to retry queue with exponential backoff\nconst Redis = require('ioredis');\nconst redis = new Redis(process.env.REDIS_URL);\n\nconst error = $input.item.json.error;\nconst workflow = $input.item.json.workflow;\n\nconst retryData = {\n  workflowId: workflow.id,\n  workflowName: workflow.name,\n  executionId: $execution.id,\n  error: error.message,\n  retryCount: 0,\n  nextRetry: Date.now() + 60000 // Retry in 1 minute\n};\n\nawait redis.lpush('retry-queue', JSON.stringify(retryData));\n\nreturn { json: { queued: true } };"
+            },
+            "name": "Add to Retry Queue",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1050,
+                400
+            ],
+            "id": "add-to-retry-queue"
+        },
+        {
+            "parameters": {},
+            "name": "Non-Critical Error",
+            "type": "n8n-nodes-base.noOp",
+            "typeVersion": 1,
+            "position": [
+                1050,
+                500
+            ],
+            "id": "non-critical"
+        }
+    ],
+    "connections": {
+        "Error Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Is Retryable?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Is Retryable?": {
+            "main": [
+                [
+                    {
+                        "node": "Log Error to Database",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Log Error to Database",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Log Error to Database": {
+            "main": [
+                [
+                    {
+                        "node": "Is Critical?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Is Critical?": {
+            "main": [
+                [
+                    {
+                        "node": "Send Slack Alert",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Non-Critical Error",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Is Retryable?": {
+            "main": [
+                [
+                    {
+                        "node": "Add to Retry Queue",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                []
+            ]
+        }
+    },
+    "settings": {
+        "executionOrder": "v1"
+    },
+    "staticData": null,
+    "tags": [
+        "error-handling"
+    ],
+    "triggerCount": 1,
+    "updatedAt": "2024-11-24T00:00:00.000Z",
+    "versionId": "1"
+}

@@ -1,0 +1,759 @@
+
+> frontend@0.1.0 test
+> jest
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+FAIL src/components/ui/__tests__/loading-state.test.tsx
+  ΓùÅ LoadingState Component ΓÇ║ Skeleton Variant ΓÇ║ should render custom message with skeleton
+
+    TestingLibraryElementError: Found multiple elements with the text: Loading tracks...
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <p
+      class="text-sm text-muted-foreground animate-pulse"
+    >
+      Loading tracks...
+    </p>
+
+    Ignored nodes: comments, script, style
+    <span
+      class="sr-only"
+    >
+      Loading tracks...
+    </span>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          aria-live="polite"
+          class="flex flex-col items-center justify-center gap-3"
+          role="status"
+        >
+          <div
+            class="space-y-3 w-full max-w-md"
+          >
+            <div
+              class="h-4 bg-white/10 rounded animate-pulse"
+              data-testid="skeleton-1"
+            />
+            <div
+              class="h-4 bg-white/10 rounded animate-pulse w-5/6"
+              data-testid="skeleton-2"
+            />
+            <div
+              class="h-4 bg-white/10 rounded animate-pulse w-4/6"
+              data-testid="skeleton-3"
+            />
+          </div>
+          <p
+            class="text-sm text-muted-foreground animate-pulse"
+          >
+            Loading tracks...
+          </p>
+          <span
+            class="sr-only"
+          >
+            Loading tracks...
+          </span>
+        </div>
+      </div>
+    </body>
+
+      20 |             render(<LoadingState variant="skeleton" message="Loading tracks..." />);
+      21 |
+    > 22 |             expect(screen.getByText('Loading tracks...')).toBeInTheDocument();
+         |                           ^
+      23 |         });
+      24 |
+      25 |         it('should apply skeleton animation classes', () => {
+
+      at Object.getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/components/ui/__tests__/loading-state.test.tsx:22:27)
+
+  ΓùÅ LoadingState Component ΓÇ║ Pulse Variant ΓÇ║ should render custom message with pulse
+
+    TestingLibraryElementError: Found multiple elements with the text: Connecting...
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <p
+      class="text-sm text-muted-foreground animate-pulse"
+    >
+      Connecting...
+    </p>
+
+    Ignored nodes: comments, script, style
+    <span
+      class="sr-only"
+    >
+      Connecting...
+    </span>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          aria-live="polite"
+          class="flex flex-col items-center justify-center gap-3"
+          role="status"
+        >
+          <div
+            class="bg-primary/20 rounded-full animate-pulse w-8 h-8"
+            data-testid="pulse-loader"
+          />
+          <p
+            class="text-sm text-muted-foreground animate-pulse"
+          >
+            Connecting...
+          </p>
+          <span
+            class="sr-only"
+          >
+            Connecting...
+          </span>
+        </div>
+      </div>
+    </body>
+
+      42 |             render(<LoadingState variant="pulse" message="Connecting..." />);
+      43 |
+    > 44 |             expect(screen.getByText('Connecting...')).toBeInTheDocument();
+         |                           ^
+      45 |         });
+      46 |
+      47 |         it('should have pulse animation', () => {
+
+      at Object.getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/components/ui/__tests__/loading-state.test.tsx:44:27)
+
+  ΓùÅ LoadingState Component ΓÇ║ Spinner Variant ΓÇ║ should render custom message with spinner
+
+    TestingLibraryElementError: Found multiple elements with the text: Processing...
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    <p
+      class="text-sm text-muted-foreground animate-pulse"
+    >
+      Processing...
+    </p>
+
+    Ignored nodes: comments, script, style
+    <span
+      class="sr-only"
+    >
+      Processing...
+    </span>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          aria-live="polite"
+          class="flex flex-col items-center justify-center gap-3"
+          role="status"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-loader-circle animate-spin text-primary w-8 h-8"
+            data-testid="spinner-loader"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 12a9 9 0 1 1-6.219-8.56"
+            />
+          </svg>
+          <p
+            class="text-sm text-muted-foreground animate-pulse"
+          >
+            Processing...
+          </p>
+          <span
+            class="sr-only"
+          >
+            Processing...
+          </span>
+        </div>
+      </div>
+    </body>
+
+      64 |             render(<LoadingState variant="spinner" message="Processing..." />);
+      65 |
+    > 66 |             expect(screen.getByText('Processing...')).toBeInTheDocument();
+         |                           ^
+      67 |         });
+      68 |
+      69 |         it('should have spin animation', () => {
+
+      at Object.getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByText (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/components/ui/__tests__/loading-state.test.tsx:66:27)
+
+  ΓùÅ LoadingState Component ΓÇ║ Default Behavior ΓÇ║ should render pulse variant by default
+
+    TestingLibraryElementError: Unable to find an element by: [data-testid="pulse-loader"]
+
+    Ignored nodes: comments, script, style
+    <body>
+      <div>
+        <div
+          aria-live="polite"
+          class="flex flex-col items-center justify-center gap-3"
+          role="status"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-loader-circle animate-spin text-primary w-8 h-8"
+            data-testid="spinner-loader"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 12a9 9 0 1 1-6.219-8.56"
+            />
+          </svg>
+          <span
+            class="sr-only"
+          >
+            Loading...
+          </span>
+        </div>
+      </div>
+    </body>
+
+      79 |             render(<LoadingState />);
+      80 |
+    > 81 |             const pulseElement = screen.getByTestId('pulse-loader');
+         |                                         ^
+      82 |             expect(pulseElement).toBeInTheDocument();
+      83 |         });
+      84 |
+
+      at Object.getElementError (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.getByTestId (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/components/ui/__tests__/loading-state.test.tsx:81:41)
+
+FAIL src/lib/__tests__/cache.test.ts
+  ΓùÅ Cache Utility ΓÇ║ invalidateCache ΓÇ║ should invalidate by pattern
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 5
+    Received number of calls: 3
+
+      135 |             await cachedFetch('user:456:profile', fetchFn, 1000);
+      136 |
+    > 137 |             expect(fetchFn).toHaveBeenCalledTimes(5); // 3 initial + 2 refetch
+          |                             ^
+      138 |         });
+      139 |     });
+      140 |
+
+      at Object.toHaveBeenCalledTimes (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/cache.test.ts:137:29)
+
+  ΓùÅ Cache Utility ΓÇ║ LRU Eviction ΓÇ║ should evict least recently used items when cache is full
+
+    expect(jest.fn()).toHaveBeenCalledTimes(expected)
+
+    Expected number of calls: 151
+    Received number of calls: 150
+
+      171 |
+      172 |             // Should have refetched (was evicted)
+    > 173 |             expect(fetchFn).toHaveBeenCalledTimes(151);
+          |                             ^
+      174 |         });
+      175 |     });
+      176 | });
+
+      at Object.toHaveBeenCalledTimes (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/cache.test.ts:173:29)
+
+FAIL src/lib/__tests__/error-handler.test.ts
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should log error to console
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "[Test Context]", [Error: Test error]
+    Received: "[Test Context] Error:", [Error: Test error]
+
+    Number of calls: 1
+
+      29 |             handleError(error, 'Test Context');
+      30 |
+    > 31 |             expect(mockConsoleError).toHaveBeenCalledWith(
+         |                                      ^
+      32 |                 '[Test Context]',
+      33 |                 error
+      34 |             );
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:31:38)
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should show toast notification by default
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: StringContaining "Test error"
+    Received: "Something went wrong. Please try again."
+
+    Number of calls: 1
+
+      39 |             handleError(error, 'Test Context');
+      40 |
+    > 41 |             expect(mockToast.error).toHaveBeenCalledWith(
+         |                                     ^
+      42 |                 expect.stringContaining('Test error')
+      43 |             );
+      44 |         });
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:41:37)
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should not show toast when silent is true
+
+    expect(jest.fn()).not.toHaveBeenCalled()
+
+    Expected number of calls: 0
+    Received number of calls: 1
+
+    1: "Something went wrong. Please try again."
+
+      48 |             handleError(error, 'Test Context', true);
+      49 |
+    > 50 |             expect(mockToast.error).not.toHaveBeenCalled();
+         |                                         ^
+      51 |         });
+      52 |
+      53 |         it('should handle Error objects', () => {
+
+      at Object.toHaveBeenCalled (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:50:41)
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should handle Error objects
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "[Test]", [Error: Standard error]
+    Received: "[Test] Error:", [Error: Standard error]
+
+    Number of calls: 1
+
+      55 |             handleError(error, 'Test');
+      56 |
+    > 57 |             expect(mockConsoleError).toHaveBeenCalledWith('[Test]', error);
+         |                                      ^
+      58 |         });
+      59 |
+      60 |         it('should handle string errors', () => {
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:57:38)
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should handle string errors
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: StringContaining "String error"
+    Received: "Something went wrong. Please try again."
+
+    Number of calls: 1
+
+      62 |
+      63 |             expect(mockConsoleError).toHaveBeenCalled();
+    > 64 |             expect(mockToast.error).toHaveBeenCalledWith(
+         |                                     ^
+      65 |                 expect.stringContaining('String error')
+      66 |             );
+      67 |         });
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:64:37)
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should handle Supabase errors
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: StringContaining "Database error"
+    Received: "Something went wrong. Please try again."
+
+    Number of calls: 1
+
+      82 |             handleError(supabaseError, 'Database Query');
+      83 |
+    > 84 |             expect(mockToast.error).toHaveBeenCalledWith(
+         |                                     ^
+      85 |                 expect.stringContaining('Database error')
+      86 |             );
+      87 |         });
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:84:37)
+
+  ΓùÅ Error Handler ΓÇ║ handleError ΓÇ║ should handle network errors
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: StringContaining "Network request failed"
+    Received: "Something went wrong. Please try again."
+
+    Number of calls: 1
+
+      93 |             handleError(networkError, 'API Call');
+      94 |
+    > 95 |             expect(mockToast.error).toHaveBeenCalledWith(
+         |                                     ^
+      96 |                 expect.stringContaining('Network request failed')
+      97 |             );
+      98 |         });
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:95:37)
+
+  ΓùÅ Error Handler ΓÇ║ AppError ΓÇ║ should handle AppError in handleError
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: StringContaining "Custom app error"
+    Received: undefined
+
+    Number of calls: 1
+
+      125 |             handleError(error, 'Test');
+      126 |
+    > 127 |             expect(mockToast.error).toHaveBeenCalledWith(
+          |                                     ^
+      128 |                 expect.stringContaining('Custom app error')
+      129 |             );
+      130 |         });
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:127:37)
+
+  ΓùÅ Error Handler ΓÇ║ Error Context ΓÇ║ should include context in error message
+
+    expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+    Expected: "[User Authentication]", Any<Error>
+    Received: "[User Authentication] Error:", [Error: Test]
+
+    Number of calls: 1
+
+      135 |             handleError(new Error('Test'), 'User Authentication');
+      136 |
+    > 137 |             expect(mockConsoleError).toHaveBeenCalledWith(
+          |                                      ^
+      138 |                 '[User Authentication]',
+      139 |                 expect.any(Error)
+      140 |             );
+
+      at Object.toHaveBeenCalledWith (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/__tests__/error-handler.test.ts:137:38)
+
+PASS src/components/__tests__/dj-queue-panel.test.tsx
+PASS src/components/__tests__/track-search.test.tsx
+  ΓùÅ Console
+
+    console.error
+      [Spotify Search] Error: Error: Search failed
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)\frontend\src\components\track-search.tsx:42:31
+          at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)\frontend\src\components\track-search.tsx:33:13
+
+      14 |
+      15 | export function handleError(error: unknown, context: string, showToast: boolean = true) {
+    > 16 |     console.error(`[${context}] Error:`, error);
+         |             ^
+      17 |
+      18 |     let userMessage = 'Something went wrong. Please try again.';
+      19 |     let code = 'UNKNOWN_ERROR';
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/error-handler.ts:16:13)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/components/track-search.tsx:50:24
+
+PASS src/__tests__/env.test.ts
+  ΓùÅ Console
+
+    console.error
+      Γ¥î Environment variable validation failed:
+
+      42 |
+      43 |     if (!parsed.success) {
+    > 44 |         console.error('Γ¥î Environment variable validation failed:');
+         |                 ^
+      45 |         console.error(parsed.error.format());
+      46 |
+      47 |         throw new Error(
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/env.ts:44:17)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:32:33
+      at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:32:37)
+
+    console.error
+      {
+        _errors: [],
+        NEXT_PUBLIC_SUPABASE_URL: { _errors: [ 'NEXT_PUBLIC_SUPABASE_URL must be a valid URL' ] }
+      }
+
+      43 |     if (!parsed.success) {
+      44 |         console.error('Γ¥î Environment variable validation failed:');
+    > 45 |         console.error(parsed.error.format());
+         |                 ^
+      46 |
+      47 |         throw new Error(
+      48 |             'Invalid environment variables. Please check your .env file.\n' +
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/env.ts:45:17)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:32:33
+      at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:32:37)
+
+    console.error
+      Γ¥î Environment variable validation failed:
+
+      42 |
+      43 |     if (!parsed.success) {
+    > 44 |         console.error('Γ¥î Environment variable validation failed:');
+         |                 ^
+      45 |         console.error(parsed.error.format());
+      46 |
+      47 |         throw new Error(
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/env.ts:44:17)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:40:33
+      at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:40:37)
+
+    console.error
+      {
+        _errors: [],
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: { _errors: [ 'Invalid input: expected string, received undefined' ] }
+      }
+
+      43 |     if (!parsed.success) {
+      44 |         console.error('Γ¥î Environment variable validation failed:');
+    > 45 |         console.error(parsed.error.format());
+         |                 ^
+      46 |
+      47 |         throw new Error(
+      48 |             'Invalid environment variables. Please check your .env file.\n' +
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/env.ts:45:17)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:40:33
+      at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:40:37)
+
+    console.error
+      Γ¥î Environment variable validation failed:
+
+      42 |
+      43 |     if (!parsed.success) {
+    > 44 |         console.error('Γ¥î Environment variable validation failed:');
+         |                 ^
+      45 |         console.error(parsed.error.format());
+      46 |
+      47 |         throw new Error(
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/env.ts:44:17)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:48:33
+      at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:48:37)
+
+    console.error
+      {
+        _errors: [],
+        NEXT_PUBLIC_WS_URL: { _errors: [ 'NEXT_PUBLIC_WS_URL must start with ws:// or wss://' ] }
+      }
+
+      43 |     if (!parsed.success) {
+      44 |         console.error('Γ¥î Environment variable validation failed:');
+    > 45 |         console.error(parsed.error.format());
+         |                 ^
+      46 |
+      47 |         throw new Error(
+      48 |             'Invalid environment variables. Please check your .env file.\n' +
+
+      at error (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/lib/env.ts:45:17)
+      at C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:48:33
+      at Object.<anonymous> (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:1824:9)
+      at Object.throwingMatcher [as toThrow] (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/expect/build/index.js:2235:93)
+      at Object.toThrow (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/src/__tests__/env.test.ts:48:37)
+
+PASS src/__tests__/auth.test.ts
+PASS src/__tests__/radio-stations.test.ts
+PASS src/lib/__tests__/spotify-api.test.ts
+PASS src/__tests__/websocket-types.test.ts
+PASS src/lib/__tests__/rate-limit.test.ts
+PASS src/__tests__/supabase.test.ts
+PASS src/__tests__/playlist-flow.test.ts
+FAIL src/components/__tests__/error-boundary.test.tsx
+  ΓùÅ Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     ΓÇó If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     ΓÇó If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     ΓÇó To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     ΓÇó If you need a custom transformation, specify a "transform" option in your config.
+     ΓÇó If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)\frontend\src\components\__tests__\error-boundary.test.tsx:43
+            const reloadMock = jest.fn();
+                  ^
+
+    SyntaxError: Identifier 'reloadMock' has already been declared
+
+      at Runtime.createScriptFromCode (C:\Users\mathe\OneDrive\Desktop\FAM MUSIC V.2     (gemini)../../../../../../frontend/node_modules/jest-runtime/build/index.js:1318:40)
+
+-------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+File                                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                               
+-------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+All files                                  |   13.21 |     9.72 |   11.78 |   13.86 |                                                 
+ src                                       |       0 |        0 |       0 |       0 |                                                 
+  middleware.ts                            |       0 |        0 |       0 |       0 | 1-84                                            
+  test-utils.tsx                           |       0 |      100 |       0 |       0 | 1-51                                            
+ src/app/api/auth/callback/spotify         |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-70                                            
+ src/app/api/health                        |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-48                                            
+ src/app/api/spotify/playlists             |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-44                                            
+ src/app/api/spotify/playlists/[id]/tracks |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 5-36                                            
+ src/app/api/spotify/search                |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 6-61                                            
+ src/app/auth/auth-code-error              |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-73                                            
+ src/app/auth/callback                     |       0 |        0 |       0 |       0 |                                                 
+  route.ts                                 |       0 |        0 |       0 |       0 | 1-48                                            
+ src/app/login                             |       0 |      100 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |      100 |       0 |       0 | 1-3                                             
+ src/app/playlists                         |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-190                                           
+ src/app/playlists/[id]                    |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-9                                             
+ src/app/radio                             |       0 |      100 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |      100 |       0 |       0 | 3-5                                             
+ src/app/radio/[id]                        |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 3-10                                            
+ src/app/test/spotify                      |       0 |        0 |       0 |       0 |                                                 
+  page.tsx                                 |       0 |        0 |       0 |       0 | 8-114                                           
+ src/components                            |    6.64 |     5.78 |    6.26 |    7.13 |                                                 
+  auth-form.tsx                            |       0 |        0 |       0 |       0 | 3-292                                           
+  boombox-login.tsx                        |       0 |        0 |       0 |       0 | 3-230                                           
+  collaborative-playlist-creator.tsx       |       0 |        0 |       0 |       0 | 3-217                                           
+  collaborative-playlist-view.tsx          |       0 |        0 |       0 |       0 | 3-334                                           
+  collaborative-playlist.tsx               |       0 |        0 |       0 |       0 | 3-126                                           
+  curator-stats.tsx                        |       0 |        0 |       0 |       0 | 3-52                                            
+  dashboard-view.tsx                       |       0 |        0 |       0 |       0 | 3-131                                           
+  discovery-feed.tsx                       |       0 |        0 |       0 |       0 | 3-121                                           
+  dj-profile-card.tsx                      |       0 |        0 |       0 |       0 | 3-234                                           
+  dj-queue-panel.tsx                       |   55.95 |    55.81 |   41.66 |   61.64 | 101,133-145,151-164,169-180,185-189,276,402-406 
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-114                                           
+  listener-wall.tsx                        |       0 |        0 |       0 |       0 | 3-154                                           
+  live-feed.tsx                            |       0 |        0 |       0 |       0 | 3-111                                           
+  notification-center.tsx                  |       0 |        0 |       0 |       0 | 3-253                                           
+  player.tsx                               |       0 |        0 |       0 |       0 | 3-45                                            
+  playlist-challenges.tsx                  |       0 |        0 |       0 |       0 | 3-215                                           
+  playlist-import.tsx                      |       0 |        0 |       0 |       0 | 8-164                                           
+  playlist-insights.tsx                    |       0 |        0 |       0 |       0 | 3-94                                            
+  playlist-track-card.tsx                  |       0 |        0 |       0 |       0 | 3-138                                           
+  queue-settings.tsx                       |      50 |    55.55 |      20 |      50 | 62-97                                           
+  reaction-overlay.tsx                     |       0 |        0 |       0 |       0 | 3-96                                            
+  scheduled-shows.tsx                      |       0 |        0 |       0 |       0 | 3-191                                           
+  song-request-queue.tsx                   |       0 |        0 |       0 |       0 | 3-314                                           
+  spotify-connect-button.tsx               |       0 |        0 |       0 |       0 | 8-34                                            
+  station-analytics.tsx                    |       0 |        0 |       0 |       0 | 3-92                                            
+  station-card.tsx                         |       0 |        0 |       0 |       0 | 3-69                                            
+  station-chat.tsx                         |       0 |        0 |       0 |       0 | 3-288                                           
+  track-comments.tsx                       |       0 |        0 |       0 |       0 | 3-195                                           
+  track-reactions.tsx                      |       0 |        0 |       0 |       0 | 3-175                                           
+  track-search.tsx                         |   91.66 |    93.75 |      90 |   94.28 | 27-28                                           
+  track-selection-modal.tsx                |   28.57 |        4 |   11.11 |   29.54 | 35-59,64,68-88,137-179                          
+  track-voting-controls.tsx                |       0 |        0 |       0 |       0 | 1-173                                           
+  vinyl-broadcast.tsx                      |       0 |        0 |       0 |       0 | 3-242                                           
+ src/components/landing                    |       0 |        0 |       0 |       0 |                                                 
+  bento-grid.tsx                           |       0 |      100 |       0 |       0 | 3-104                                           
+  hero.tsx                                 |       0 |        0 |       0 |       0 | 3-109                                           
+  landing-page.tsx                         |       0 |      100 |       0 |       0 | 3-7                                             
+ src/components/ui                         |   36.47 |    34.28 |    5.55 |   36.47 |                                                 
+  dropdown-menu.tsx                        |   71.42 |    14.28 |       0 |   71.42 | 187-189,192-198                                 
+  error-boundary.tsx                       |       0 |        0 |       0 |       0 | 3-152                                           
+  loading-state.tsx                        |   46.15 |    61.11 |   16.66 |   46.15 | 120-172                                         
+  magnetic-button.tsx                      |       0 |        0 |       0 |       0 | 3-43                                            
+ src/hooks                                 |   61.29 |    36.36 |      80 |   63.33 |                                                 
+  use-fetch.ts                             |   61.29 |    36.36 |      80 |   63.33 | 37-50,69-71,91-105                              
+ src/lib                                   |   27.59 |     21.5 |   28.82 |   27.59 |                                                 
+  RadioSyncEngine.ts                       |       0 |        0 |       0 |       0 | 7-199                                           
+  cache.ts                                 |   58.75 |    32.14 |   68.42 |   58.97 | 29,54-55,109-111,134-144,160-201,236-237,247    
+  env.ts                                   |     100 |      100 |     100 |     100 |                                                 
+  error-handler.ts                         |   73.91 |    61.53 |   66.66 |   73.91 | 27-28,30-31,42-43                               
+  logger.ts                                |    37.5 |       25 |      40 |   33.33 | 9-15,20-32,40                                   
+  optimistic-updates.ts                    |       0 |        0 |       0 |       0 | 6-191                                           
+  radio-station.tsx                        |       0 |        0 |       0 |       0 | 3-166                                           
+  rate-limit.ts                            |      95 |      100 |     100 |     100 |                                                 
+  spotify-api.ts                           |   63.04 |    34.61 |   66.66 |   62.22 | 88,112,142,152-166,191-229                      
+  spotify-sdk.tsx                          |       0 |        0 |       0 |       0 | 3-121                                           
+  supabase.ts                              |     100 |      100 |     100 |     100 |                                                 
+  utils.ts                                 |     100 |      100 |     100 |     100 |                                                 
+  websocket.tsx                            |       0 |        0 |       0 |       0 | 3-156                                           
+ src/types                                 |     100 |      100 |     100 |     100 |                                                 
+  websocket.ts                             |     100 |      100 |     100 |     100 |                                                 
+-------------------------------------------|---------|----------|---------|---------|-------------------------------------------------
+Jest: "global" coverage threshold for statements (70%) not met: 13.21%
+Jest: "global" coverage threshold for branches (70%) not met: 9.72%
+Jest: "global" coverage threshold for lines (70%) not met: 13.86%
+Jest: "global" coverage threshold for functions (70%) not met: 11.78%
+Test Suites: 4 failed, 10 passed, 14 total
+Tests:       15 failed, 107 passed, 122 total
+Snapshots:   0 total
+Time:        5.725 s
+Ran all test suites.

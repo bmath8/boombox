@@ -1,0 +1,62 @@
+# Cron jobs for FAM Music V.2
+# Add to crontab with: crontab -e
+
+# ============================================================================
+# BACKUPS
+# ============================================================================
+
+# Daily backup at 2 AM
+0 2 * * * /opt/fam-music/deploy/backup.sh >> /var/log/fam-music/backup.log 2>&1
+
+# ============================================================================
+# DATABASE MAINTENANCE
+# ============================================================================
+
+# Create new partitions monthly (1st of each month at 1 AM)
+0 1 1 * * /opt/fam-music/database/create-partitions.sh >> /var/log/fam-music/partitions.log 2>&1
+
+# Vacuum and analyze database (daily at 3 AM)
+0 3 * * * psql -U fammusic_app -d fam_music -c "VACUUM ANALYZE;" >> /var/log/fam-music/vacuum.log 2>&1
+
+# Clean up expired cache entries (hourly)
+0 * * * * psql -U fammusic_app -d fam_music -c "SELECT cleanup_expired_cache();" >> /var/log/fam-music/cache-cleanup.log 2>&1
+
+# Clean up stale radio listeners (every minute)
+* * * * * psql -U fammusic_app -d fam_music -c "SELECT cleanup_stale_listeners();" >> /var/log/fam-music/listener-cleanup.log 2>&1
+
+# ============================================================================
+# MATERIALIZED VIEWS REFRESH
+# ============================================================================
+
+# Refresh daily_top_tracks (daily at 12:05 AM)
+5 0 * * * psql -U fammusic_app -d fam_music -c "REFRESH MATERIALIZED VIEW CONCURRENTLY daily_top_tracks;" >> /var/log/fam-music/refresh-views.log 2>&1
+
+# Refresh user_listening_stats (hourly at :10 past the hour)
+10 * * * * psql -U fammusic_app -d fam_music -c "REFRESH MATERIALIZED VIEW CONCURRENTLY user_listening_stats;" >> /var/log/fam-music/refresh-views.log 2>&1
+
+# ============================================================================
+# MONITORING
+# ============================================================================
+
+# Health check every 5 minutes
+*/5 * * * * curl -f http://localhost:9000/health || echo "Health check failed" | mail -s "FAM Music Health Alert" admin@fammusic.app
+
+# ============================================================================
+# LOG ROTATION
+# ============================================================================
+
+# Rotate logs weekly (Sunday at 4 AM)
+0 4 * * 0 find /var/log/fam-music -name "*.log" -mtime +7 -exec gzip {} \; && find /var/log/fam-music -name "*.gz" -mtime +30 -delete
+
+# ============================================================================
+# SUMMARIES GENERATION
+# ============================================================================
+
+# Generate daily summaries (daily at 1 AM)
+0 1 * * * curl -X POST http://localhost:3000/api/summaries/generate-daily >> /var/log/fam-music/summaries.log 2>&1
+
+# Generate weekly summaries (Monday at 2 AM)
+0 2 * * 1 curl -X POST http://localhost:3000/api/summaries/generate-weekly >> /var/log/fam-music/summaries.log 2>&1
+
+# Generate monthly summaries (1st of month at 3 AM)
+0 3 1 * * curl -X POST http://localhost:3000/api/summaries/generate-monthly >> /var/log/fam-music/summaries.log 2>&1
