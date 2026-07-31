@@ -2,15 +2,15 @@
 
 **A real-time social music app — listen together, build collaborative playlists, and broadcast your own radio.** Share what you're playing live, see friends' activity in real time, discover music, and host synced listening sessions.
 
-> **🔴 Live demo:** https://boom-box-v-5-git-main-bmath8s-projects.vercel.app
-> **Demo login:** `demo@boombox.app` · `BoomBoxDemo2026` (pre-seeded account with a live radio station + collaborative playlist)
+> **Status:** working prototype — full source and test suite are here. Not publicly deployed;
+> run it locally with the instructions below.
 > _Built by Brian Mathew · [github.com/bmath8](https://github.com/bmath8)_
 
 
 ---
 
 ## What it does
-- **Live listening & radio** — broadcast a session and keep listeners in sync to within ~500ms (client-side latency compensation).
+- **Live listening & radio** — broadcast a session and keep listeners in sync, with client-side latency compensation.
 - **Collaborative playlists** — drag-and-drop, multi-user, real-time updates.
 - **Spotify integration** — pulls track data and syncs playback state.
 - **Discovery & social** — friends, listening activity feeds, badges, challenges, song requests.
