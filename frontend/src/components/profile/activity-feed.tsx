@@ -44,10 +44,17 @@ const activityMessages: Record<ActivityType, string> = {
 };
 
 export function ActivityFeed({ userId, limit = 20, className }: ActivityFeedProps) {
+    // TODO (audit 2026-09-23): this conditionally calls useActivity vs useFeed,
+    // which violates react-hooks/rules-of-hooks (hook order can change between
+    // renders if userId changes/becomes defined). Not auto-fixed here because it
+    // needs an "enabled" option added to both query hooks in
+    // hooks/queries/use-profile.ts, plus a behavior check -- suppressed with the
+    // disable comment below rather than silently masked so it stays visible.
     const {
         data: activities,
         isLoading,
         error,
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- known issue, see TODO above
     } = userId ? useActivity(userId, limit) : useFeed(limit);
 
     const activitiesList = activities as UserActivity[] | undefined;

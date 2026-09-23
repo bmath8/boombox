@@ -96,7 +96,7 @@ export function StationDiscoveryFeed() {
             // Manually fetch broadcaster details to avoid relationship error
             const broadcasterIds = Array.from(new Set((stationsData || []).map((s: any) => s.broadcaster_id)));
 
-            let broadcastersMap = new Map<string, { display_name: string; avatar_url?: string }>();
+            const broadcastersMap = new Map<string, { display_name: string; avatar_url?: string }>();
 
             if (broadcasterIds.length > 0) {
                 const { data: usersData, error: usersError } = await supabase

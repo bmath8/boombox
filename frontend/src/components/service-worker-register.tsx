@@ -17,7 +17,7 @@ export function ServiceWorkerRegister() {
             navigator.serviceWorker.getRegistrations().then(function (registrations) {
                 if (registrations.length > 0) {
                     console.log('[SW] Found existing registrations. Unregistering all to clear cache...');
-                    for (let registration of registrations) {
+                    for (const registration of registrations) {
                         registration.unregister();
                         console.log('[SW] Unregistered:', registration);
                     }

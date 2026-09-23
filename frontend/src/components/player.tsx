@@ -9,10 +9,6 @@ import type { Artist } from '@/lib/types';
 export function Player() {
     const { player, currentTrack, isPaused, isActive } = useSpotify();
 
-    if (!isActive || !currentTrack) {
-        return null;
-    }
-
     const togglePlay = () => {
         player?.togglePlay();
     };
@@ -41,6 +37,12 @@ export function Player() {
             document.removeEventListener('player:previous', handlePrevious);
         };
     }, [player, isPaused]); // Re-attach listeners if player state changes
+    // NOTE (audit 2026-09-23): moved below the hook above so useEffect isn't
+    // called conditionally (react-hooks/rules-of-hooks).
+    if (!isActive || !currentTrack) {
+        return null;
+    }
+
 
     return (
         <motion.div
