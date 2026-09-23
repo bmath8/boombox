@@ -33,6 +33,15 @@ jest.mock('@dnd-kit/sortable', () => ({
     sortableKeyboardCoordinates: jest.fn(),
 }));
 
+// Broadcaster-only child panels need RadioProvider/SpotifyProvider context;
+// they are separate components, so stub them to unit-test DJQueuePanel itself.
+jest.mock('@/components/advanced-dj-controls', () => ({
+    AdvancedDJControls: () => <div data-testid="advanced-dj-controls" />,
+}));
+jest.mock('@/components/ai-dj-assistant', () => ({
+    AIDJAssistant: () => <div data-testid="ai-dj-assistant" />,
+}));
+
 // Mock Supabase
 jest.mock('@/lib/supabase', () => ({
     supabase: {

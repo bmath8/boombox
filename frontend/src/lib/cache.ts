@@ -251,13 +251,13 @@ class SmartCache {
         const priorityWeight = (p: CachePriority) =>
             p === 'high' ? 1000 : p === 'normal' ? 100 : 10;
 
+        const now = Date.now();
         for (const [key, entry] of this.memoryCache.entries()) {
-            // Calculate LRU score (lower = more likely to evict)
-            const ageScore = Date.now() - entry.lastAccessed;
-            const accessScore = 1 / (entry.accessCount + 1);
-            const priorityScore = 1 / priorityWeight(entry.priority);
-
-            const score = ageScore * accessScore * priorityScore;
+            // Retention score (lower = more likely to evict): favours high priority,
+            // frequently accessed, and recently accessed entries.
+            // (Previously age was multiplied in, which evicted the NEWEST entry.)
+            const ageMs = now - entry.lastAccessed;
+            const score = (priorityWeight(entry.priority) * (entry.accessCount + 1)) / (ageMs + 1);
 
             if (score < lowestScore) {
                 lowestScore = score;
@@ -279,7 +279,7 @@ class SmartCache {
 
         try {
             // Remove expired entries first
-            const cursor = await this.db.transaction(STORE_NAME, 'readwrite')
+            let cursor = await this.db.transaction(STORE_NAME, 'readwrite')
                 .objectStore(STORE_NAME)
                 .openCursor();
 
@@ -291,7 +291,7 @@ class SmartCache {
                     await cursor.delete();
                     evictedCount++;
                 }
-                await cursor.continue();
+                cursor = await cursor.continue();
             }
 
             logger.debug('[Cache] DB eviction', { evictedCount });
@@ -385,7 +385,7 @@ class SmartCache {
         // IndexedDB cleanup
         if (this.db) {
             try {
-                const cursor = await this.db.transaction(STORE_NAME, 'readwrite')
+                let cursor = await this.db.transaction(STORE_NAME, 'readwrite')
                     .objectStore(STORE_NAME)
                     .openCursor();
 
@@ -394,7 +394,7 @@ class SmartCache {
                         await cursor.delete();
                         expiredCount++;
                     }
-                    await cursor.continue();
+                    cursor = await cursor.continue();
                 }
             } catch (error) {
                 logger.error('[Cache] DB cleanup error:', error);

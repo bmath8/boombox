@@ -27,9 +27,9 @@ describe('Error Handler', () => {
             const error = new Error('Test error');
             handleError(error, 'Test Context');
 
+            // handleError logs a single formatted string with the extracted message
             expect(mockConsoleError).toHaveBeenCalledWith(
-                '[Test Context] Error:',
-                error
+                '[Test Context] Error: Test error'
             );
         });
 
@@ -149,8 +149,7 @@ describe('Error Handler', () => {
             handleError(new Error('Test'), 'User Authentication');
 
             expect(mockConsoleError).toHaveBeenCalledWith(
-                '[User Authentication] Error:',
-                expect.any(Error)
+                '[User Authentication] Error: Test'
             );
         });
 

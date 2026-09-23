@@ -63,8 +63,8 @@ describe('RadioSyncEngine', () => {
 
             // Fast-forward through the 100ms delays between samples
             for (let i = 0; i < 5; i++) {
-                await Promise.resolve();
-                jest.advanceTimersByTime(100);
+                // Flush the fetch/json microtasks and the 100ms sleep for each sample
+                await jest.advanceTimersByTimeAsync(100);
             }
 
             await calibrationPromise;
@@ -87,8 +87,8 @@ describe('RadioSyncEngine', () => {
             const calibrationPromise = engine.calibrateServerTime();
 
             for (let i = 0; i < 5; i++) {
-                await Promise.resolve();
-                jest.advanceTimersByTime(100);
+                // Flush the fetch/json microtasks and the 100ms sleep for each sample
+                await jest.advanceTimersByTimeAsync(100);
             }
 
             await calibrationPromise;
@@ -120,8 +120,8 @@ describe('RadioSyncEngine', () => {
 
             const calibrationPromise = engine.calibrateServerTime();
             for (let i = 0; i < 5; i++) {
-                await Promise.resolve();
-                jest.advanceTimersByTime(100);
+                // Flush the fetch/json microtasks and the 100ms sleep for each sample
+                await jest.advanceTimersByTimeAsync(100);
             }
             await calibrationPromise;
 
@@ -321,7 +321,10 @@ describe('RadioSyncEngine', () => {
                 json: async () => ({ timestamp: Date.now() }),
             });
 
-            await engine.handlePositionUpdate(data);
+            // Uncalibrated engine calibrates first (5 samples x 100ms sleep under fake timers)
+            const updatePromise = engine.handlePositionUpdate(data);
+            await jest.advanceTimersByTimeAsync(600);
+            await updatePromise;
 
             expect(mockPlayer.getCurrentState).toHaveBeenCalled();
         });

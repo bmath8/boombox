@@ -1,4 +1,7 @@
 /**
+ * @jest-environment node
+ */
+/**
  * Spotify OAuth Callback Route Tests
  * Tests OAuth flow and token exchange
  */
@@ -6,10 +9,20 @@
 import { GET } from '../route';
 import { NextRequest } from 'next/server';
 
-// Mock Supabase client
-const createRouteHandlerClient = jest.fn();
-jest.mock('@supabase/auth-helpers-nextjs', () => ({
-    createRouteHandlerClient,
+// Mock Supabase server client (the route uses @/lib/supabase-server, built on @supabase/ssr;
+// the deprecated @supabase/auth-helpers-nextjs package is no longer used).
+// `mock` prefix lets jest.mock's hoisted factory reference it.
+const mockCreateServerSupabaseClient = jest.fn();
+jest.mock('@/lib/supabase-server', () => ({
+    createServerSupabaseClient: () => mockCreateServerSupabaseClient(),
+}));
+// Keep the old name so the test bodies below read unchanged.
+const createRouteHandlerClient = mockCreateServerSupabaseClient;
+
+// Mock CSRF state validation (tested separately below via mockValidateOAuthState)
+const mockValidateOAuthState = jest.fn();
+jest.mock('@/lib/oauth-state', () => ({
+    validateOAuthState: (state: string | null) => mockValidateOAuthState(state),
 }));
 
 // Mock next/headers
@@ -28,6 +41,7 @@ describe('Spotify OAuth Callback Route', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
+        mockValidateOAuthState.mockResolvedValue(undefined);
         (process.env as Record<string, string>)['NEXT_PUBLIC_SPOTIFY_CLIENT_ID'] = 'test_client_id';
         (process.env as Record<string, string>)['SPOTIFY_CLIENT_SECRET'] = 'test_client_secret';
         (process.env as Record<string, string>)['NEXT_PUBLIC_SPOTIFY_REDIRECT_URI'] = 'http://localhost:3000/api/auth/callback/spotify';
@@ -126,8 +140,10 @@ describe('Spotify OAuth Callback Route', () => {
             const request = createMockRequest({ code: mockCode });
             await GET(request);
 
+            // The route reads credentials from the validated `env` snapshot (lib/env.ts), which is
+            // captured at module load from jest.setup.js — not from process.env at request time.
             const expectedAuth = `Basic ${Buffer.from(
-                `test_client_id:test_client_secret`
+                `test-spotify-client-id:test-spotify-client-secret`
             ).toString('base64')}`;
 
             expect(global.fetch).toHaveBeenCalledWith(
@@ -157,6 +173,19 @@ describe('Spotify OAuth Callback Route', () => {
 
             expect(response.headers.get('location')).toBe(
                 `${mockOrigin}/auth/error?error=no_code`
+            );
+        });
+
+        it('should redirect with csrf_detected when state validation fails', async () => {
+            mockValidateOAuthState.mockRejectedValue(new Error('State mismatch'));
+
+            const request = createMockRequest({ code: mockCode, state: 'forged' });
+            const response = await GET(request);
+
+            expect(mockValidateOAuthState).toHaveBeenCalledWith('forged');
+            expect(global.fetch).not.toHaveBeenCalled();
+            expect(response.headers.get('location')).toBe(
+                `${mockOrigin}/auth/error?error=csrf_detected`
             );
         });
 

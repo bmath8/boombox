@@ -1,6 +1,11 @@
 /**
+ * @jest-environment node
+ */
+/**
  * Health Check API Route Tests
  * Tests system health monitoring endpoint
+ * (Runs in the node environment: API routes need the Fetch API globals
+ * such as Request/Response, which jsdom does not provide.)
  */
 
 import { GET } from '../route';
@@ -29,6 +34,8 @@ jest.mock('@/lib/env', () => ({
         NEXT_PUBLIC_SPOTIFY_CLIENT_ID: 'test-spotify-client-id',
         NEXT_PUBLIC_SPOTIFY_REDIRECT_URI: 'http://localhost:3000/auth/callback/spotify',
     },
+    // The route only queries the DB when Supabase is configured
+    isSupabaseConfigured: () => true,
 }));
 
 // Helper to create a mock NextRequest
