@@ -38,13 +38,13 @@
     "idb": "^8.0.3",
     "ioredis": "^5.8.2",
     "lucide-react": "^0.554.0",
-    "next": "^16.3.6",
+    "next": "^16.4.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "recharts": "^3.5.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
-    "zod": "^4.1.13",
+    "zod": "^4.6.7",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
