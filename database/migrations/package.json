@@ -1,7 +1,3 @@
-/**
- * Database Migration System using node-pg-migrate
- * Provides safe schema changes in production
- */
 {
     "name": "fam-music-migrations",
     "version": "1.0.0",
